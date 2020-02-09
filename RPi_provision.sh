@@ -71,12 +71,20 @@ echo "+-------------------------+"
 echo "|           GETH          |"
 echo "+-------------------------+"
 
-sudo apt-get -y install dphys-swapfile build-essential libgmp3-dev curl
+# sudo apt-get -y install dphys-swapfile build-essential libgmp3-dev curl
+# cd 
+# git clone https://github.com/ethereum/go-ethereum
+# cd go-ethereum
+# sudo make geth
+
+GETH_VERSION=1.9.6-bd059680
+
 cd 
-git clone https://github.com/ethereum/go-ethereum
-cd go-ethereum
-sudo make geth
-
-
+wget https://gethstore.blob.core.windows.net/builds/geth-linux-arm7-$GETH_VERSION.tar.gz
+sudo tar -xvf geth-linux-arm7-$GETH_VERSION.tar.gz
+cd geth-linux-arm7-$GETH_VERSION
+sudo mv geth /usr/local/bin/
+cd
+rm geth-linux-arm7-$GETH_VERSION.tar.gz
 
 
