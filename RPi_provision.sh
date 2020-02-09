@@ -5,7 +5,7 @@ echo "|    Actualizar sistema   |"
 echo "+-------------------------+"
 
 sudo apt update
-sudo apt upgrade
+sudo apt -y upgrade
 
 echo "+-------------------------+"
 echo "|   Actualizar firmware   |"
