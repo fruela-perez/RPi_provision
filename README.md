@@ -11,3 +11,5 @@ Instalar cosillas en una Raspberry Pi. **Probado en placas 3B, 3B+ y 3A+ con Ras
 + Añadir aliases y otras cosillas al .profile
 + Instalar Golang
 + Instalar Geth
++ Instalar Node.js
++ Instalar MongoDB

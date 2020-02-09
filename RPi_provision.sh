@@ -29,6 +29,7 @@ echo "+-------------------------+"
 sudo apt-get install -y vim ctags vim-doc vim-scripts
 sudo apt-get install -y git
 sudo apt-get install -y htop
+sudo apt-get install -y gnupg
 
 echo "+-------------------------+"
 echo "|           SSH           |"
@@ -138,4 +139,33 @@ if [ "$respuesta" != "${respuesta#[Yy]}" ] ;then
 else
     echo Omitiendo la instalación de Geth
 fi
+
+echo "+-------------------------+"
+echo "|    nodejs y mongodb     |"
+echo "+-------------------------+"
+
+echo "Instalar nodejs? (y/n) \c"
+read respuesta
+
+if [ "$respuesta" != "${respuesta#[Yy]}" ] ;then
+	apt-get install -y nodejs
+else
+    echo Omitiendo la instalación de nodejs
+fi
+
+echo "Instalar mongodb? (y/n) \c"
+read respuesta
+
+if [ "$respuesta" != "${respuesta#[Yy]}" ] ;then
+	sudo apt-get install -y mongodb-server
+else
+    echo Omitiendo la instalación de nodejs
+fi
+
+echo
+echo "Misión cumplida! :)"
+
+
+
+
 
