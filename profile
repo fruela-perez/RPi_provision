@@ -26,7 +26,7 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-PS1=" $ "
+PS1="$ "
 
 # -- keystroke savers --
 alias cl='clear'
@@ -38,7 +38,7 @@ alias memu='ps -e -o rss=,args= | sort -b -k1,1n | pr -TW120'
 alias psg='ps aux | grep' #requires an argument
 
 # -- apt --
-alias update='sudo apt-get update && sudo apt-get upgrade && sudo apt-get autoremove'
+alias update='sudo apt-get update && sudo apt-get -y upgrade && sudo apt-get -y autoremove'
 
 # -- Temperaturas --
 alias cputemp="echo $((`cat /sys/class/thermal/thermal_zone0/temp`/1000))"

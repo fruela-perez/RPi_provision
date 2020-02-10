@@ -1,0 +1,27 @@
+# ~/.profile: executed by Bourne-compatible login shells.
+
+if [ "$BASH" ]; then
+  if [ -f ~/.bashrc ]; then
+    . ~/.bashrc
+  fi
+fi
+
+mesg n || true
+
+PS1="# "
+
+# -- keystroke savers --
+alias cl='clear'
+alias ll='ls -l'
+alias lla='ls -la'
+
+# -- System info --
+alias memu='ps -e -o rss=,args= | sort -b -k1,1n | pr -TW120'
+alias psg='ps aux | grep' #requires an argument
+
+# -- apt --
+alias update='apt-get update && apt-get -y upgrade && apt-get -y autoremove'
+
+# -- Temperaturas --
+alias cputemp="echo $((`cat /sys/class/thermal/thermal_zone0/temp`/1000))"
+alias gputemp="vcgencmd measure_temp|cut -c6-9"

@@ -10,14 +10,25 @@ DEBIAN_FRONTEND=noninteractive
 
 clear
 
+echo "+-------------------------+"
+echo "|        .profile         |"
+echo "+-------------------------+"
+echo
+echo "Generando .profile para el usuario pi..."
+echo
+cp profile ~/.profile
+echo
+echo "Generando .profile para el usuario root"
+sudo cp root_profile /root/.profile
+
 echo
 echo "+-------------------------+"
 echo "|    Actualizar sistema   |"
 echo "+-------------------------+"
 echo
-sudo apt update
-sudo apt -y upgrade
-sudo apt-get autoremove
+sudo apt-get update
+sudo apt-get -y upgrade
+sudo apt-get -y autoremove
 
 echo
 echo "+-------------------------+"
@@ -138,35 +149,6 @@ fi
 
 echo
 echo "+-------------------------+"
-echo "|      Let’s Encrypt      |"
-echo "+-------------------------+"
-echo
-echo "Crear e instalar certificado https? [y/N]"
-read respuesta
-
-if [ "$respuesta" != "${respuesta#[Yy]}" ] ;then
-    echo Creando e instalando certificado...
-    echo
-	sudo apt-get install -y python-certbot-apache
-	sudo apt-get install certbot
-	sudo certbot --apache
-else
-    echo Omitiendo la instalación del certificado
-fi
-
-echo
-echo "+-------------------------+"
-echo "|         .profile        |"
-echo "+-------------------------+"
-echo
-echo "Generando .profile para el usuario pi"
-cp profile ~/.profile
-#echo
-#echo "Generando .profile para el usuario root"
-#sudo cp profile /root/.profile
-
-echo
-echo "+-------------------------+"
 echo "|         GOLANG          |"
 echo "+-------------------------+"
 echo
@@ -232,6 +214,24 @@ if [ "$respuesta" != "${respuesta#[Yy]}" ] ;then
 	sudo apt-get install -y mongodb-server
 else
     echo Omitiendo la instalación de nodejs
+fi
+
+echo
+echo "+-------------------------+"
+echo "|      Let’s Encrypt      |"
+echo "+-------------------------+"
+echo
+echo "Crear e instalar certificado https? [y/N]"
+read respuesta
+
+if [ "$respuesta" != "${respuesta#[Yy]}" ] ;then
+    echo Creando e instalando certificado...
+    echo
+	sudo apt-get install -y python-certbot-apache
+	sudo apt-get install certbot
+	sudo certbot --apache
+else
+    echo Omitiendo la instalación del certificado
 fi
 
 echo
