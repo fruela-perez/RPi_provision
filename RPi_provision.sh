@@ -11,6 +11,12 @@ DEBIAN_FRONTEND=noninteractive
 clear
 
 echo "+-------------------------+"
+echo "| Retroflag Safe shutdown |"
+echo "+-------------------------+"
+echo
+wget -O - "https://raw.githubusercontent.com/RetroFlag/retroflag-picase/master/install.sh" | sudo bash
+echo
+echo "+-------------------------+"
 echo "|        .profile         |"
 echo "+-------------------------+"
 echo
