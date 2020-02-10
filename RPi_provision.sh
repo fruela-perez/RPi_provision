@@ -14,7 +14,17 @@ echo "+-------------------------+"
 echo "| Retroflag Safe shutdown |"
 echo "+-------------------------+"
 echo
-wget -O - "https://raw.githubusercontent.com/RetroFlag/retroflag-picase/master/install.sh" | sudo bash
+echo "¿Instalar script? [y/N]"
+read respuesta
+
+if [ "$respuesta" != "${respuesta#[Yy]}" ] ;then
+    echo Instalando...
+    echo
+	wget -O - "https://raw.githubusercontent.com/RetroFlag/retroflag-picase/master/install.sh" | sudo bash
+else
+    echo Omitiendo la instalación
+fi
+
 echo
 echo "+-------------------------+"
 echo "|        .profile         |"
