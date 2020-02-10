@@ -44,5 +44,5 @@ alias update='sudo apt-get update && sudo apt-get upgrade && sudo apt-get autore
 alias cputemp="echo $((`cat /sys/class/thermal/thermal_zone0/temp`/1000))"
 alias gputemp="vcgencmd measure_temp|cut -c6-9"
 
-PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/games:/usr/games:/usr/local/go/bin:/usr/local/go/bin:/usr/local/go/bin
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/games:/usr/games:/usr/local/go/bin
 GOPATH=/home/pi/golang

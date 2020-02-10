@@ -1,16 +1,22 @@
 #!/bin/bash
 
+MYSQL_ROOT_PWD='1234'
+GETH_VERSION=1.9.6-bd059680
+GO_VERSION=1.13.7
+
+echo
 echo "+-------------------------+"
 echo "|    Actualizar sistema   |"
 echo "+-------------------------+"
-
+echo
 sudo apt update
 sudo apt -y upgrade
 
+echo
 echo "+-------------------------+"
 echo "|   Actualizar firmware   |"
 echo "+-------------------------+"
-
+echo
 echo "¿Actualizar firmware? (y/n) \c"
 read respuesta
 
@@ -21,20 +27,21 @@ if [ "$respuesta" != "${respuesta#[Yy]}" ] ;then
 else
     echo Omitiendo la actualización del firmware de la RPi
 fi
-
+echo
 echo "+-------------------------+"
 echo "|      Basic cosillas     |"
 echo "+-------------------------+"
-
+echo
 sudo apt-get install -y vim ctags vim-doc vim-scripts
 sudo apt-get install -y git
 sudo apt-get install -y htop
 sudo apt-get install -y gnupg
 
+echo
 echo "+-------------------------+"
 echo "|           SSH           |"
 echo "+-------------------------+"
-
+echo
 echo "¿Instalar servidor SSH? (y/n) \c"
 read respuesta
 
@@ -47,10 +54,80 @@ else
     echo Omitiendo la instalación del servidor SSH
 fi
 
+echo
+echo "+-------------------------+"
+echo "|          APACHE         |"
+echo "+-------------------------+"
+echo
+echo "¿Instalar Apache? (y/n) \c"
+read respuesta
+
+if [ "$respuesta" != "${respuesta#[Yy]}" ] ;then
+    echo Instalando Apache...
+    echo
+	apt-get install -y dirmngr
+	apt-key adv --keyserver pool.sks-keyservers.net --recv-keys 5072E1F5
+else
+    echo Omitiendo la instalación de Apache
+fi
+echo
+echo "+-------------------------+"
+echo "|          MySQL          |"
+echo "+-------------------------+"
+echo
+echo "¿Instalar MySQL? (y/n) \c"
+read respuesta
+
+if [ "$respuesta" != "${respuesta#[Yy]}" ] ;then
+    echo Instalando MySQL...
+    echo
+   	echo "deb http://repo.mysql.com/apt/debian $(lsb_release -sc) mysql-8.0" | \
+	tee /etc/apt/sources.list.d/mysql80.listx
+
+	debconf-set-selections <<< \
+	"mysql-community-server mysql-server/default-auth-override select Use Legacy Authentication Method (Retain MySQL 5.x Compatibility)"
+
+	apt-get update
+
+	debconf-set-selections <<< \
+	  "mysql-community-server mysql-community-server/root-pass password $MYSQL_ROOT_PWD"
+
+	debconf-set-selections <<< \
+	  "mysql-community-server mysql-community-server/re-root-pass password $MYSQL_ROOT_PWD"
+
+	debconf-set-selections <<< \
+	  "mysql-community-server mysql-server/default-auth-override select Use Legacy Authentication Method (Retain MySQL 5.x Compatibility)"
+
+	DEBIAN_FRONTEND=noninteractive apt-get install -y mysql-server
+else
+    echo Omitiendo la instalación de MySQL
+fi
+
+echo
+echo "+-------------------------+"
+echo "|           PHP           |"
+echo "+-------------------------+"
+echo
+echo "¿Instalar PHP? (y/n) \c"
+read respuesta
+
+if [ "$respuesta" != "${respuesta#[Yy]}" ] ;then
+    echo Instalando PHP...
+    echo
+	apt-get install -y php php-common php-cli php-fpm php-json php-pdo \
+	php-mysql php-zip php-gd  php-mbstring php-curl php-xml php-pear \
+	php-bcmath php7.3-mysql libapache2-mod-php
+
+	service apache2 restart
+else
+    echo Omitiendo la instalación de PHP
+fi
+
+echo
 echo "+-------------------------+"
 echo "|           FTP           |"
 echo "+-------------------------+"
-
+echo
 echo "¿Instalar servidor FTP? (y/n) \c"
 read respuesta
 
@@ -64,10 +141,11 @@ else
     echo Omitiendo la instalación del servidor FTP
 fi
 
+echo
 echo "+-------------------------+"
 echo "|      Let’s Encrypt      |"
 echo "+-------------------------+"
-
+echo
 echo "Crear e instalar certificado https? (y/n) \c"
 read respuesta
 
@@ -81,25 +159,26 @@ else
     echo Omitiendo la instalación del certificado
 fi
 
-
+echo
 echo "+-------------------------+"
 echo "|         .profile        |"
 echo "+-------------------------+"
-
+echo
 cp profile ~/.profile
 
+echo
 echo "+-------------------------+"
 echo "|         GOLANG          |"
 echo "+-------------------------+"
-
+echo
 echo "Instalar Go? (y/n) \c"
 read respuesta
 
 if [ "$respuesta" != "${respuesta#[Yy]}" ] ;then
 	cd 
-	wget https://dl.google.com/go/go1.13.7.linux-armv6l.tar.gz
-	sudo tar -C /usr/local -xzf go1.13.7.linux-armv6l.tar.gz
-	rm go1.13.7.linux-armv6l.tar.gz
+	wget https://dl.google.com/go/go$GO_VERSION.linux-armv6l.tar.gz
+	sudo tar -C /usr/local -xzf go$GO_VERSION.linux-armv6l.tar.gz
+	rm go$GO_VERSION.linux-armv6l.tar.gz
 
 	echo "PATH=$PATH:/usr/local/go/bin" >> ~/.profile
 	echo "GOPATH=$HOME/golang" >> ~/.profile
@@ -112,19 +191,11 @@ else
     echo Omitiendo la instalación de Go
 fi
 
+echo
 echo "+-------------------------+"
 echo "|           GETH          |"
 echo "+-------------------------+"
-
-# sudo apt-get -y install dphys-swapfile build-essential libgmp3-dev curl
-# cd 
-# git clone https://github.com/ethereum/go-ethereum
-# cd go-ethereum
-# sudo make geth
-
-
-GETH_VERSION=1.9.6-bd059680
-
+echo
 echo "Instalar Geth? (y/n) \c"
 read respuesta
 
@@ -140,10 +211,11 @@ else
     echo Omitiendo la instalación de Geth
 fi
 
+echo
 echo "+-------------------------+"
 echo "|    nodejs y mongodb     |"
 echo "+-------------------------+"
-
+echo
 echo "Instalar nodejs? (y/n) \c"
 read respuesta
 
@@ -153,6 +225,7 @@ else
     echo Omitiendo la instalación de nodejs
 fi
 
+echo
 echo "Instalar mongodb? (y/n) \c"
 read respuesta
 
