@@ -10,22 +10,21 @@ DEBIAN_FRONTEND=noninteractive
 
 clear
 
-echo "+-------------------------+"
-echo "| Retroflag Safe shutdown |"
-echo "+-------------------------+"
-echo
-echo "¿Instalar script? [y/N]"
-read respuesta
+# echo "+-------------------------+"
+# echo "| Retroflag Safe shutdown |"
+# echo "+-------------------------+"
+# echo
+# echo "¿Instalar script? [y/N]"
+# read respuesta
 
-if [ "$respuesta" != "${respuesta#[Yy]}" ] ;then
-    echo Instalando...
-    echo
-	wget -O - "https://raw.githubusercontent.com/RetroFlag/retroflag-picase/master/install.sh" | sudo bash
-else
-    echo Omitiendo la instalación
-fi
+# if [ "$respuesta" != "${respuesta#[Yy]}" ] ;then
+#     echo Instalando...
+#     echo
+# 	wget -O - "https://raw.githubusercontent.com/RetroFlag/retroflag-picase/master/install.sh" | sudo bash
+# else
+#     echo Omitiendo la instalación
+# fi
 
-echo
 echo "+-------------------------+"
 echo "|        .profile         |"
 echo "+-------------------------+"
@@ -34,7 +33,7 @@ echo "Generando .profile para el usuario pi..."
 echo
 cp profile ~/.profile
 echo
-echo "Generando .profile para el usuario root"
+echo "Generando .profile para el usuario root..."
 sudo cp root_profile /root/.profile
 
 echo
@@ -84,7 +83,7 @@ if [ "$respuesta" != "${respuesta#[Yy]}" ] ;then
     echo Instalando servidor SSH...
     echo
 	sudo systemctl enable ssh
-	sudo systemctl start sshelse
+	sudo systemctl start ssh
 else
     echo Omitiendo la instalación del servidor SSH
 fi
@@ -201,7 +200,7 @@ if [ "$respuesta" != "${respuesta#[Yy]}" ] ;then
 	wget https://gethstore.blob.core.windows.net/builds/geth-linux-arm7-$GETH_VERSION.tar.gz
 	sudo tar -xvf geth-linux-arm7-$GETH_VERSION.tar.gz
 	cd geth-linux-arm7-$GETH_VERSION
-	sudo mv geth /usr/local/bin/
+	sudo mv geth /u sr/local/bin/
 	cd
 	rm geth-linux-arm7-$GETH_VERSION.tar.gz
 else
