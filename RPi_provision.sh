@@ -1,9 +1,14 @@
 #!/bin/bash
 
+SHELL=/bin/bash
+
 GETH_VERSION=1.9.6-bd059680
 GO_VERSION=1.13.7
-MYSQL_ROOT_PWD='1234'
+
+MYSQL_ROOT_PWD='1234' # Ni se te ocurra usar esto como password xD
 DEBIAN_FRONTEND=noninteractive 
+
+clear
 
 echo
 echo "+-------------------------+"
@@ -12,13 +17,14 @@ echo "+-------------------------+"
 echo
 sudo apt update
 sudo apt -y upgrade
+sudo apt-get autoremove
 
 echo
 echo "+-------------------------+"
 echo "|   Actualizar firmware   |"
 echo "+-------------------------+"
 echo
-echo "¿Actualizar firmware? (y/n) \c"
+echo "¿Actualizar firmware? [y/N]"
 read respuesta
 
 if [ "$respuesta" != "${respuesta#[Yy]}" ] ;then
@@ -37,13 +43,14 @@ sudo apt-get install -y vim ctags vim-doc vim-scripts
 sudo apt-get install -y git
 sudo apt-get install -y htop
 sudo apt-get install -y gnupg
+sudo apt-get install -y debconf
 
 echo
 echo "+-------------------------+"
 echo "|           SSH           |"
 echo "+-------------------------+"
 echo
-echo "¿Instalar servidor SSH? (y/n) \c"
+echo "¿Instalar servidor SSH? [y/N]"
 read respuesta
 
 if [ "$respuesta" != "${respuesta#[Yy]}" ] ;then
@@ -60,48 +67,35 @@ echo "+-------------------------+"
 echo "|          APACHE         |"
 echo "+-------------------------+"
 echo
-echo "¿Instalar Apache? (y/n) \c"
+echo "¿Instalar Apache? [y/N]"
 read respuesta
 
 if [ "$respuesta" != "${respuesta#[Yy]}" ] ;then
     echo Instalando Apache...
     echo
 	sudo apt-get install -y dirmngr apache2
-	sudo apt-key adv --keyserver pool.sks-keyservers.net --recv-keys 5072E1F5
 else
     echo Omitiendo la instalación de Apache
 fi
 echo
 echo "+-------------------------+"
-echo "|          MySQL          |"
+echo "|         MariaDB         |"
 echo "+-------------------------+"
 echo
-echo "¿Instalar MySQL? (y/n) \c"
+echo "¿Instalar MariaDB? [y/N]"
 read respuesta
 
 if [ "$respuesta" != "${respuesta#[Yy]}" ] ;then
-    echo Instalando MySQL...
-    echo
-   	echo "deb http://repo.mysql.com/apt/debian $(lsb_release -sc) mysql-8.0" | \
-	tee /etc/apt/sources.list.d/mysql80.listx
-
-	debconf-set-selections <<< \
-	"mysql-community-server mysql-server/default-auth-override select Use Legacy Authentication Method (Retain MySQL 5.x Compatibility)"
-
-	sudo apt-get update
-
-	debconf-set-selections <<< \
-	  "mysql-community-server mysql-community-server/root-pass password $MYSQL_ROOT_PWD"
-
-	debconf-set-selections <<< \
-	  "mysql-community-server mysql-community-server/re-root-pass password $MYSQL_ROOT_PWD"
-
-	debconf-set-selections <<< \
-	  "mysql-community-server mysql-server/default-auth-override select Use Legacy Authentication Method (Retain MySQL 5.x Compatibility)"
-
-	sudo apt-get install -y mysql-server
-else
-    echo Omitiendo la instalación de MySQL
+    echo Instalando MariaDB...
+    echo	
+    sudo debconf-set-selections <<< "mariadb-server mysql-server/root_password password $PASSWORD"
+    sudo debconf-set-selections <<< "mariadb-server mysql-server/root_password_again password $PASSWORD" 
+    
+    sudo apt-get install -y mariadb-server mariadb-client python-mysqldb
+    sudo apt-get install -y mariadb-server-10.0
+    #sudo mysql_secure_installation
+else 
+    echo Omitiendo la instalación de MariaDB
 fi
 
 echo
@@ -109,13 +103,13 @@ echo "+-------------------------+"
 echo "|           PHP           |"
 echo "+-------------------------+"
 echo
-echo "¿Instalar PHP? (y/n) \c"
+echo "¿Instalar PHP? [y/N]"
 read respuesta
 
 if [ "$respuesta" != "${respuesta#[Yy]}" ] ;then
     echo Instalando PHP...
     echo
-	sudo apt-get install -y php php-common php-cli php-fpm php-json php-pdo \
+	sudo apt-get install -y php php-common php-cli php-fpm php-json php7.3-common \
 	php-mysql php-zip php-gd  php-mbstring php-curl php-xml php-pear \
 	php-bcmath php7.3-mysql libapache2-mod-php
 
@@ -129,7 +123,7 @@ echo "+-------------------------+"
 echo "|           FTP           |"
 echo "+-------------------------+"
 echo
-echo "¿Instalar servidor FTP? (y/n) \c"
+echo "¿Instalar servidor FTP? [y/N]"
 read respuesta
 
 if [ "$respuesta" != "${respuesta#[Yy]}" ] ;then
@@ -147,7 +141,7 @@ echo "+-------------------------+"
 echo "|      Let’s Encrypt      |"
 echo "+-------------------------+"
 echo
-echo "Crear e instalar certificado https? (y/n) \c"
+echo "Crear e instalar certificado https? [y/N]"
 read respuesta
 
 if [ "$respuesta" != "${respuesta#[Yy]}" ] ;then
@@ -165,14 +159,18 @@ echo "+-------------------------+"
 echo "|         .profile        |"
 echo "+-------------------------+"
 echo
+echo "Generando .profile para el usuario pi"
 cp profile ~/.profile
+#echo
+#echo "Generando .profile para el usuario root"
+#sudo cp profile /root/.profile
 
 echo
 echo "+-------------------------+"
 echo "|         GOLANG          |"
 echo "+-------------------------+"
 echo
-echo "Instalar Go? (y/n) \c"
+echo "Instalar Go? [y/N]"
 read respuesta
 
 if [ "$respuesta" != "${respuesta#[Yy]}" ] ;then
@@ -197,7 +195,7 @@ echo "+-------------------------+"
 echo "|           GETH          |"
 echo "+-------------------------+"
 echo
-echo "Instalar Geth? (y/n) \c"
+echo "Instalar Geth? [y/N]"
 read respuesta
 
 if [ "$respuesta" != "${respuesta#[Yy]}" ] ;then
@@ -217,17 +215,17 @@ echo "+-------------------------+"
 echo "|    nodejs y mongodb     |"
 echo "+-------------------------+"
 echo
-echo "Instalar nodejs? (y/n) \c"
+echo "Instalar nodejs? [y/N]"
 read respuesta
 
 if [ "$respuesta" != "${respuesta#[Yy]}" ] ;then
-	apt-get install -y nodejs
+	sudo apt-get install -y nodejs
 else
     echo Omitiendo la instalación de nodejs
 fi
 
 echo
-echo "Instalar mongodb? (y/n) \c"
+echo "Instalar mongodb? [y/N]"
 read respuesta
 
 if [ "$respuesta" != "${respuesta#[Yy]}" ] ;then
@@ -238,8 +236,3 @@ fi
 
 echo
 echo "Misión cumplida! :)"
-
-
-
-
-
