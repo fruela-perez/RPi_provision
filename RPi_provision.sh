@@ -1,8 +1,9 @@
 #!/bin/bash
 
-MYSQL_ROOT_PWD='1234'
 GETH_VERSION=1.9.6-bd059680
 GO_VERSION=1.13.7
+MYSQL_ROOT_PWD='1234'
+DEBIAN_FRONTEND=noninteractive 
 
 echo
 echo "+-------------------------+"
@@ -65,8 +66,8 @@ read respuesta
 if [ "$respuesta" != "${respuesta#[Yy]}" ] ;then
     echo Instalando Apache...
     echo
-	apt-get install -y dirmngr
-	apt-key adv --keyserver pool.sks-keyservers.net --recv-keys 5072E1F5
+	sudo apt-get install -y dirmngr apache2
+	sudo apt-key adv --keyserver pool.sks-keyservers.net --recv-keys 5072E1F5
 else
     echo Omitiendo la instalación de Apache
 fi
@@ -87,7 +88,7 @@ if [ "$respuesta" != "${respuesta#[Yy]}" ] ;then
 	debconf-set-selections <<< \
 	"mysql-community-server mysql-server/default-auth-override select Use Legacy Authentication Method (Retain MySQL 5.x Compatibility)"
 
-	apt-get update
+	sudo apt-get update
 
 	debconf-set-selections <<< \
 	  "mysql-community-server mysql-community-server/root-pass password $MYSQL_ROOT_PWD"
@@ -98,7 +99,7 @@ if [ "$respuesta" != "${respuesta#[Yy]}" ] ;then
 	debconf-set-selections <<< \
 	  "mysql-community-server mysql-server/default-auth-override select Use Legacy Authentication Method (Retain MySQL 5.x Compatibility)"
 
-	DEBIAN_FRONTEND=noninteractive apt-get install -y mysql-server
+	sudo apt-get install -y mysql-server
 else
     echo Omitiendo la instalación de MySQL
 fi
@@ -114,11 +115,11 @@ read respuesta
 if [ "$respuesta" != "${respuesta#[Yy]}" ] ;then
     echo Instalando PHP...
     echo
-	apt-get install -y php php-common php-cli php-fpm php-json php-pdo \
+	sudo apt-get install -y php php-common php-cli php-fpm php-json php-pdo \
 	php-mysql php-zip php-gd  php-mbstring php-curl php-xml php-pear \
 	php-bcmath php7.3-mysql libapache2-mod-php
 
-	service apache2 restart
+	sudo service apache2 restart
 else
     echo Omitiendo la instalación de PHP
 fi
