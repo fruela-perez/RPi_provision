@@ -2,7 +2,7 @@
 
 SHELL=/bin/bash
 
-export GETH_VERSION=1.9.6-bd059680
+GETH_VERSION=1.9.6-bd059680
 GO_VERSION=1.13.7
 
 MYSQL_ROOT_PWD='1234' # Ni se te ocurra usar esto como password xD
@@ -11,6 +11,9 @@ NEW_USER='fruela'
 NEW_USER_PWD='1234' # Ídem xD
 
 DEBIAN_FRONTEND=noninteractive 
+
+GIT_USER="Fruela Pérez"
+GIT_EMAIL=fruela.perez@protonmail.com
 
 clear
 
@@ -69,9 +72,10 @@ sudo apt-get install -y --install-suggests debconf
 echo
 echo "Configurar GIT"
 echo
-git config --global user.name "Fruela Pérez"
-git config --global user.email fruela.perez@protonmail.com
+git config --global user.name $GIT_USER
+git config --global user.email $GIT_EMAIL
 git config --global core.editor vim
+ 
 
 echo
 echo "+-------------------------+"
@@ -220,7 +224,7 @@ echo -n "Instalar nodejs? [s/N] "
 read respuesta
 
 if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
-	sudo apt-get install -y --install-suggests nodejs
+	sudo apt-get install -y --install-suggests npm nodejs
 else
     echo Omitiendo la instalación de nodejs
 fi
