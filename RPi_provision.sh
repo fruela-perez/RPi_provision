@@ -10,21 +10,6 @@ DEBIAN_FRONTEND=noninteractive
 
 clear
 
-# echo "+-------------------------+"
-# echo "| Retroflag Safe shutdown |"
-# echo "+-------------------------+"
-# echo
-# echo "¿Instalar script? [y/N]"
-# read respuesta
-
-# if [ "$respuesta" != "${respuesta#[Yy]}" ] ;then
-#     echo Instalando...
-#     echo
-# 	wget -O - "https://raw.githubusercontent.com/RetroFlag/retroflag-picase/master/install.sh" | sudo bash
-# else
-#     echo Omitiendo la instalación
-# fi
-
 echo "+-------------------------+"
 echo "|        .profile         |"
 echo "+-------------------------+"
@@ -32,6 +17,7 @@ echo
 echo "Generando .profile para el usuario pi..."
 echo
 cp profile ~/.profile
+source ~/.profile
 echo
 echo "Generando .profile para el usuario root..."
 sudo cp root_profile /root/.profile
@@ -50,7 +36,7 @@ echo "+-------------------------+"
 echo "|   Actualizar firmware   |"
 echo "+-------------------------+"
 echo
-echo "¿Actualizar firmware? [y/N]"
+echo "¿Actualizar firmware? [s/N] "
 read respuesta
 
 if [ "$respuesta" != "${respuesta#[Yy]}" ] ;then
@@ -76,7 +62,7 @@ echo "+-------------------------+"
 echo "|           SSH           |"
 echo "+-------------------------+"
 echo
-echo "¿Instalar servidor SSH? [y/N]"
+echo "¿Instalar servidor SSH? [s/N] "
 read respuesta
 
 if [ "$respuesta" != "${respuesta#[Yy]}" ] ;then
@@ -93,7 +79,7 @@ echo "+-------------------------+"
 echo "|          APACHE         |"
 echo "+-------------------------+"
 echo
-echo "¿Instalar Apache? [y/N]"
+echo "¿Instalar Apache? [s/N] "
 read respuesta
 
 if [ "$respuesta" != "${respuesta#[Yy]}" ] ;then
@@ -108,7 +94,7 @@ echo "+-------------------------+"
 echo "|         MariaDB         |"
 echo "+-------------------------+"
 echo
-echo "¿Instalar MariaDB? [y/N]"
+echo "¿Instalar MariaDB? [s/N] "
 read respuesta
 
 if [ "$respuesta" != "${respuesta#[Yy]}" ] ;then
@@ -129,7 +115,7 @@ echo "+-------------------------+"
 echo "|           PHP           |"
 echo "+-------------------------+"
 echo
-echo "¿Instalar PHP? [y/N]"
+echo "¿Instalar PHP? [s/N] "
 read respuesta
 
 if [ "$respuesta" != "${respuesta#[Yy]}" ] ;then
@@ -137,7 +123,7 @@ if [ "$respuesta" != "${respuesta#[Yy]}" ] ;then
     echo
 	sudo apt-get install -y php php-common php-cli php-fpm php-json php7.3-common \
 	php-mysql php-zip php-gd  php-mbstring php-curl php-xml php-pear \
-	php-bcmath php7.3-mysql libapache2-mod-php
+	php-bcmath php7.3-mysql libapache2-mod-php composer
 
 	sudo service apache2 restart
 else
@@ -149,7 +135,7 @@ echo "+-------------------------+"
 echo "|           FTP           |"
 echo "+-------------------------+"
 echo
-echo "¿Instalar servidor FTP? [y/N]"
+echo "¿Instalar servidor FTP? [s/N] "
 read respuesta
 
 if [ "$respuesta" != "${respuesta#[Yy]}" ] ;then
@@ -167,7 +153,7 @@ echo "+-------------------------+"
 echo "|         GOLANG          |"
 echo "+-------------------------+"
 echo
-echo "Instalar Go? [y/N]"
+echo -n "Instalar Go? [s/N] "
 read respuesta
 
 if [ "$respuesta" != "${respuesta#[Yy]}" ] ;then
@@ -192,7 +178,7 @@ echo "+-------------------------+"
 echo "|           GETH          |"
 echo "+-------------------------+"
 echo
-echo "Instalar Geth? [y/N]"
+echo -n "Instalar Geth? [s/N] "
 read respuesta
 
 if [ "$respuesta" != "${respuesta#[Yy]}" ] ;then
@@ -212,7 +198,7 @@ echo "+-------------------------+"
 echo "|    nodejs y mongodb     |"
 echo "+-------------------------+"
 echo
-echo "Instalar nodejs? [y/N]"
+echo -n "Instalar nodejs? [s/N] "
 read respuesta
 
 if [ "$respuesta" != "${respuesta#[Yy]}" ] ;then
@@ -222,7 +208,7 @@ else
 fi
 
 echo
-echo "Instalar mongodb? [y/N]"
+echo -n "Instalar mongodb? [s/N] "
 read respuesta
 
 if [ "$respuesta" != "${respuesta#[Yy]}" ] ;then
@@ -236,7 +222,7 @@ echo "+-------------------------+"
 echo "|      Let’s Encrypt      |"
 echo "+-------------------------+"
 echo
-echo "Crear e instalar certificado https? [y/N]"
+echo -n "Crear e instalar certificado https? [s/N] "
 read respuesta
 
 if [ "$respuesta" != "${respuesta#[Yy]}" ] ;then
@@ -247,6 +233,38 @@ if [ "$respuesta" != "${respuesta#[Yy]}" ] ;then
 	sudo certbot --apache
 else
     echo Omitiendo la instalación del certificado
+fi
+
+echo "+-------------------------+"
+echo "| Retroflag Safe shutdown |"
+echo "+-------------------------+"
+echo
+echo -n "¿Instalar script? [s/N] "
+read respuesta
+
+if [ "$respuesta" != "${respuesta#[Yy]}" ] ;then
+    echo Instalando...
+    echo
+	wget -O - "https://raw.githubusercontent.com/RetroFlag/retroflag-picase/master/install.sh" | sudo bash
+else
+    echo Omitiendo la instalación
+fi
+
+# Instalar Mate Desktop
+
+echo "+-------------------------+"
+echo "|       Mate Desktop      |"
+echo "+-------------------------+"
+echo
+echo -n "¿Instalar Mate Desktop? [s/N] "
+read respuesta
+
+if [ "$respuesta" != "${respuesta#[Yy]}" ] ;then
+    echo Instalando...
+    echo
+	bash ./install_mate_1.sh
+else
+    echo Omitiendo la instalación
 fi
 
 echo
