@@ -2,7 +2,7 @@
 
 SHELL=/bin/bash
 
-GETH_VERSION=1.9.6-bd059680
+export GETH_VERSION=1.9.6-bd059680
 GO_VERSION=1.13.7
 
 MYSQL_ROOT_PWD='1234' # Ni se te ocurra usar esto como password xD
@@ -65,6 +65,13 @@ sudo apt-get install -y --install-suggests git
 sudo apt-get install -y --install-suggests htop
 sudo apt-get install -y --install-suggests gnupg
 sudo apt-get install -y --install-suggests debconf
+
+echo
+echo "Configurar GIT"
+echo
+git config --global user.name "Fruela Pérez"
+git config --global user.email fruela.perez@protonmail.com
+git config --global core.editor vim
 
 echo
 echo "+-------------------------+"
@@ -199,6 +206,7 @@ if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
 	sudo mv geth /usr/local/bin/
 	cd
 	rm geth-linux-arm7-$GETH_VERSION.tar.gz
+	sudo rm -rf geth-linux-arm7-$GETH_VERSION
 else
     echo Omitiendo la instalación de Geth
 fi
