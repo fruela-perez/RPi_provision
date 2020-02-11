@@ -36,7 +36,7 @@ echo "+-------------------------+"
 echo "|   Actualizar firmware   |"
 echo "+-------------------------+"
 echo
-echo "¿Actualizar firmware? [s/N] "
+echo -n "¿Actualizar firmware? [s/N] "
 read respuesta
 
 if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
@@ -62,7 +62,7 @@ echo "+-------------------------+"
 echo "|           SSH           |"
 echo "+-------------------------+"
 echo
-echo "¿Instalar servidor SSH? [s/N] "
+echo -n "¿Instalar servidor SSH? [s/N] "
 read respuesta
 
 if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
@@ -79,7 +79,7 @@ echo "+-------------------------+"
 echo "|          APACHE         |"
 echo "+-------------------------+"
 echo
-echo "¿Instalar Apache? [s/N] "
+echo -n "¿Instalar Apache? [s/N] "
 read respuesta
 
 if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
@@ -94,7 +94,7 @@ echo "+-------------------------+"
 echo "|         MariaDB         |"
 echo "+-------------------------+"
 echo
-echo "¿Instalar MariaDB? [s/N] "
+echo -n "¿Instalar MariaDB? [s/N] "
 read respuesta
 
 if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
@@ -115,7 +115,7 @@ echo "+-------------------------+"
 echo "|           PHP           |"
 echo "+-------------------------+"
 echo
-echo "¿Instalar PHP? [s/N] "
+echo -n "¿Instalar PHP? [s/N] "
 read respuesta
 
 if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
@@ -135,7 +135,7 @@ echo "+-------------------------+"
 echo "|           FTP           |"
 echo "+-------------------------+"
 echo
-echo "¿Instalar servidor FTP? [s/N] "
+echo -n "¿Instalar servidor FTP? [s/N] "
 read respuesta
 
 if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then

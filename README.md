@@ -10,13 +10,13 @@ Lo ideal es, partir de una [Raspbian Buster Lite](https://downloads.raspberrypi.
 + Actualizar paquetes del sistema
 + Actualizar el *firmware* de la RPi (bajo tu responsabilidad, si conviertes en un ladrillo tu RPi yo no quiero saber nada)
 + Instalar herramientas básicas (vim, htop, git, gnupg, debconf, et al.)
-+ Instalar Apache y PHP
-+ Instalar MariaDB
-+ Instalar servidor SSH
-+ Instalar servidor FTP
-+ Instalar Golang
-+ Instalar Geth
-+ Instalar Node.js
-+ Instalar MongoDB
++ Apache y PHP
++ MariaDB
++ servidor SSH
++ servidor FTP
++ Golang
++ Geth
++ Node.js
++ MongoDB
 + Crear e instalar certificado https
-+ Instalar Mate 
++ Mate Desktop

@@ -26,7 +26,7 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-PS1="$ "
+PS1="\u@\h $ "
 
 # -- keystroke savers --
 alias cl='clear'
