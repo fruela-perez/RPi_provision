@@ -28,8 +28,7 @@ echo "+-------------------------+"
 echo
 echo "Generando .profile para nuevo usuario..."
 echo
-cp profile /home/$NEW_USER/.profile
-source ~/.profile
+sudo cp profile /home/$NEW_USER/.profile
 echo
 echo "Generando .profile para el usuario root..."
 sudo cp root_profile /root/.profile
