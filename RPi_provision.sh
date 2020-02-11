@@ -39,7 +39,7 @@ echo
 echo "¿Actualizar firmware? [s/N] "
 read respuesta
 
-if [ "$respuesta" != "${respuesta#[Yy]}" ] ;then
+if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
     echo Actualizando firmware...
     echo
     sudo rpi-update
@@ -65,7 +65,7 @@ echo
 echo "¿Instalar servidor SSH? [s/N] "
 read respuesta
 
-if [ "$respuesta" != "${respuesta#[Yy]}" ] ;then
+if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
     echo Instalando servidor SSH...
     echo
 	sudo systemctl enable ssh
@@ -82,7 +82,7 @@ echo
 echo "¿Instalar Apache? [s/N] "
 read respuesta
 
-if [ "$respuesta" != "${respuesta#[Yy]}" ] ;then
+if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
     echo Instalando Apache...
     echo
 	sudo apt-get install -y dirmngr apache2
@@ -97,7 +97,7 @@ echo
 echo "¿Instalar MariaDB? [s/N] "
 read respuesta
 
-if [ "$respuesta" != "${respuesta#[Yy]}" ] ;then
+if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
     echo Instalando MariaDB...
     echo	
     sudo debconf-set-selections <<< "mariadb-server mysql-server/root_password password $PASSWORD"
@@ -118,7 +118,7 @@ echo
 echo "¿Instalar PHP? [s/N] "
 read respuesta
 
-if [ "$respuesta" != "${respuesta#[Yy]}" ] ;then
+if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
     echo Instalando PHP...
     echo
 	sudo apt-get install -y php php-common php-cli php-fpm php-json php7.3-common \
@@ -138,7 +138,7 @@ echo
 echo "¿Instalar servidor FTP? [s/N] "
 read respuesta
 
-if [ "$respuesta" != "${respuesta#[Yy]}" ] ;then
+if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
     echo Instalando servidor FTP...
     echo
 	sudo apt-get install -y vsftpd
@@ -156,7 +156,7 @@ echo
 echo -n "Instalar Go? [s/N] "
 read respuesta
 
-if [ "$respuesta" != "${respuesta#[Yy]}" ] ;then
+if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
 	cd 
 	wget https://dl.google.com/go/go$GO_VERSION.linux-armv6l.tar.gz
 	sudo tar -C /usr/local -xzf go$GO_VERSION.linux-armv6l.tar.gz
@@ -181,7 +181,7 @@ echo
 echo -n "Instalar Geth? [s/N] "
 read respuesta
 
-if [ "$respuesta" != "${respuesta#[Yy]}" ] ;then
+if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
 	cd 
 	wget https://gethstore.blob.core.windows.net/builds/geth-linux-arm7-$GETH_VERSION.tar.gz
 	sudo tar -xvf geth-linux-arm7-$GETH_VERSION.tar.gz
@@ -201,7 +201,7 @@ echo
 echo -n "Instalar nodejs? [s/N] "
 read respuesta
 
-if [ "$respuesta" != "${respuesta#[Yy]}" ] ;then
+if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
 	sudo apt-get install -y nodejs
 else
     echo Omitiendo la instalación de nodejs
@@ -211,7 +211,7 @@ echo
 echo -n "Instalar mongodb? [s/N] "
 read respuesta
 
-if [ "$respuesta" != "${respuesta#[Yy]}" ] ;then
+if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
 	sudo apt-get install -y mongodb-server
 else
     echo Omitiendo la instalación de nodejs
@@ -225,7 +225,7 @@ echo
 echo -n "Crear e instalar certificado https? [s/N] "
 read respuesta
 
-if [ "$respuesta" != "${respuesta#[Yy]}" ] ;then
+if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
     echo Creando e instalando certificado...
     echo
 	sudo apt-get install -y python-certbot-apache
@@ -242,7 +242,7 @@ echo
 echo -n "¿Instalar script? [s/N] "
 read respuesta
 
-if [ "$respuesta" != "${respuesta#[Yy]}" ] ;then
+if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
     echo Instalando...
     echo
 	wget -O - "https://raw.githubusercontent.com/RetroFlag/retroflag-picase/master/install.sh" | sudo bash
@@ -259,7 +259,7 @@ echo
 echo -n "¿Instalar Mate Desktop? [s/N] "
 read respuesta
 
-if [ "$respuesta" != "${respuesta#[Yy]}" ] ;then
+if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
     echo Instalando...
     echo
 	bash ./install_mate_1.sh
