@@ -7,16 +7,21 @@ GO_VERSION=1.13.7
 
 MYSQL_ROOT_PWD='1234' # Ni se te ocurra usar esto como password xD
 DEBIAN_FRONTEND=noninteractive 
+NEW_USER=fruela
 
 clear
 
+echo "Creando usuario $NEW_USER"
+echo
+sudo useradd $NEW_USER
+echo
 echo "+-------------------------+"
 echo "|        .profile         |"
 echo "+-------------------------+"
 echo
-echo "Generando .profile para el usuario pi..."
+echo "Generando .profile para nuevo usuario..."
 echo
-cp profile ~/.profile
+cp profile /home/$NEW_USER/.profile
 source ~/.profile
 echo
 echo "Generando .profile para el usuario root..."
@@ -51,11 +56,11 @@ echo "+-------------------------+"
 echo "|      Basic cosillas     |"
 echo "+-------------------------+"
 echo
-sudo apt-get install -y vim ctags vim-doc vim-scripts
-sudo apt-get install -y git
-sudo apt-get install -y htop
-sudo apt-get install -y gnupg
-sudo apt-get install -y debconf
+sudo apt-get install -y --install-suggests vim 
+sudo apt-get install -y --install-suggests git
+sudo apt-get install -y --install-suggests htop
+sudo apt-get install -y --install-suggests gnupg
+sudo apt-get install -y --install-suggests debconf
 
 echo
 echo "+-------------------------+"
@@ -85,7 +90,8 @@ read respuesta
 if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
     echo Instalando Apache...
     echo
-	sudo apt-get install -y dirmngr apache2
+	sudo apt-get install -y --install-suggests dirmngr apache2
+	sudo apt-get -y autoremove
 else
     echo Omitiendo la instalación de Apache
 fi
@@ -103,8 +109,8 @@ if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
     sudo debconf-set-selections <<< "mariadb-server mysql-server/root_password password $PASSWORD"
     sudo debconf-set-selections <<< "mariadb-server mysql-server/root_password_again password $PASSWORD" 
     
-    sudo apt-get install -y mariadb-server mariadb-client python-mysqldb
-    sudo apt-get install -y mariadb-server-10.0
+    sudo apt-get install -y --install-suggests mariadb-server mariadb-client python-mysqldb
+    sudo apt-get install -y --install-suggests mariadb-server-10.0
     #sudo mysql_secure_installation
 else 
     echo Omitiendo la instalación de MariaDB
@@ -121,7 +127,7 @@ read respuesta
 if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
     echo Instalando PHP...
     echo
-	sudo apt-get install -y php php-common php-cli php-fpm php-json php7.3-common \
+	sudo apt-get install -y --install-suggests php php-common php-cli php-fpm php-json php7.3-common \
 	php-mysql php-zip php-gd  php-mbstring php-curl php-xml php-pear \
 	php-bcmath php7.3-mysql libapache2-mod-php composer
 
@@ -141,7 +147,7 @@ read respuesta
 if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
     echo Instalando servidor FTP...
     echo
-	sudo apt-get install -y vsftpd
+	sudo apt-get install -y --install-suggests vsftpd
 	sudo cp vsftpd.conf /etc/vsftpd.conf
 	sudo service vsftpd restart
 else
@@ -202,7 +208,7 @@ echo -n "Instalar nodejs? [s/N] "
 read respuesta
 
 if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
-	sudo apt-get install -y nodejs
+	sudo apt-get install -y --install-suggests nodejs
 else
     echo Omitiendo la instalación de nodejs
 fi
@@ -212,7 +218,7 @@ echo -n "Instalar mongodb? [s/N] "
 read respuesta
 
 if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
-	sudo apt-get install -y mongodb-server
+	sudo apt-get install -y --install-suggests mongodb-server
 else
     echo Omitiendo la instalación de nodejs
 fi
@@ -228,7 +234,7 @@ read respuesta
 if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
     echo Creando e instalando certificado...
     echo
-	sudo apt-get install -y python-certbot-apache
+	sudo apt-get install -y --install-suggests python-certbot-apache
 	sudo apt-get install certbot
 	sudo certbot --apache
 else
@@ -250,5 +256,6 @@ else
     echo Omitiendo la instalación
 fi
 
+sudo apt-get -y autoremove
 echo
 echo "Misión cumplida! :)"

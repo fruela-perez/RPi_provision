@@ -8,7 +8,7 @@ fi
 
 mesg n || true
 
-PS1="# "
+PS1="\h # "
 
 # -- keystroke savers --
 alias cl='clear'
