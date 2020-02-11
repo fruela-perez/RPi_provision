@@ -186,7 +186,7 @@ if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
 	wget https://gethstore.blob.core.windows.net/builds/geth-linux-arm7-$GETH_VERSION.tar.gz
 	sudo tar -xvf geth-linux-arm7-$GETH_VERSION.tar.gz
 	cd geth-linux-arm7-$GETH_VERSION
-	sudo mv geth /u sr/local/bin/
+	sudo mv geth /usr/local/bin/
 	cd
 	rm geth-linux-arm7-$GETH_VERSION.tar.gz
 else
