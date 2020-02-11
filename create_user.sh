@@ -1,8 +1,16 @@
-NEW_USER='woz'
-NEW_USER_PWD='1234' # Ídem xD
+if [ $# -lt 2 ] ;then
+	echo
+	echo "Uso: create_user.sh <usuario> <password> [sudoer]"
+	echo
+	exit 1
+fi
 
-echo "Creando usuario $NEW_USER"
+sudo useradd -m $1
+echo -e "$2\n$2" | sudo passwd -q 2>&1 $NEW_USER
+
+if [ "$3" = "sudoer" ] ;then
+	sudo usermod -a -G sudo $1
+fi
+
 echo
-sudo useradd -m $NEW_USER
-echo -e "$NEW_USER_PWD\n$NEW_USER_PWD" | sudo passwd -q 2>&1 $NEW_USER
-sudo usermod -a -G sudo $NEW_USER
+

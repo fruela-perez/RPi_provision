@@ -6,14 +6,18 @@ GETH_VERSION=1.9.6-bd059680
 GO_VERSION=1.13.7
 
 MYSQL_ROOT_PWD='1234' # Ni se te ocurra usar esto como password xD
+
+NEW_USER='fruela'
+NEW_USER_PWD='1234' # Ídem xD
+
 DEBIAN_FRONTEND=noninteractive 
-NEW_USER=fruela
 
 clear
 
 echo "Creando usuario $NEW_USER"
 echo
-sudo useradd $NEW_USER
+./create_user.sh $NEW_USER $NEW_USER_PWD sudoer
+
 echo
 echo "+-------------------------+"
 echo "|        .profile         |"

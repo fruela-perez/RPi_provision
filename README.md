@@ -1,4 +1,4 @@
-# RPi_provision versión 0.1.1
+# RPi_provision versión 0.1.2
 
 Instalar cosillas en una Raspberry Pi. **Probado en placas 3B, 3B+ y 3A+ con Raspbian.**
 
