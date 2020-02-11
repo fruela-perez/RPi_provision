@@ -9,7 +9,7 @@ Lo ideal es, partir de una [Raspbian Buster Lite](https://downloads.raspberrypi.
 
 + Crear un usuario (editar variables usuario/password antes de lanzar el script)
 + Safe shutdown para cajas Retroflag (NesPi+ y MegaPi)
-+ Añadir aliases, modificar PS12 y otras cosillas al .profile del nuevo usuario y root
++ Añadir aliases, modificar PS1 y otras cosillas al .profile del nuevo usuario y root
 + Actualizar paquetes del sistema
 + Actualizar el *firmware* de la RPi (bajo tu responsabilidad, si conviertes en un ladrillo tu RPi yo no quiero saber nada)
 + Instalar herramientas básicas (vim, htop, git, gnupg, debconf, et al.)
