@@ -1,12 +1,10 @@
 if [ $# -lt 2 ] ;then
 	echo "Uso: create_user.sh <usuario> <password> [sudoer]"
-	echo
 	exit 1
 fi
 
 if id "$1" >/dev/null 2>&1; then
 	echo "El usuario $1 ya existe."
-	echo
 	exit 2
 else
 	sudo useradd -m $1
@@ -17,8 +15,7 @@ else
 	elif [ -n "$3" ]; then
 		echo "El tercer parámetro no es válido, sólo se admite la cadena 'sudoer'."
 		echo "El usuario $1 no se añadirá a los sudoers"
-		echo
 	else
-		echo
+		echo "Creado usuario $1."
 	fi
 fi

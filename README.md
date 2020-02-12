@@ -2,7 +2,7 @@
 
 Instalar cosillas en una Raspberry Pi. **Probado en placas 3B, 3B+ y 3A+ con Raspbian.**
 
-Lo ideal es, partir de una [Raspbian Buster Lite](https://downloads.raspberrypi.org/raspbian_full_latest.torrent), tostarla  con BalenaEtcher o similar, clonar el repo y ejecutar el script `RPi_provision.sh` e ir seleccionando lo que se quiere instalar. Por el mismo precio, mejor guardar un log, por elemplo algo así:
+Lo ideal es, partiendo de una [Raspbian Buster Lite](https://downloads.raspberrypi.org/raspbian_full_latest.torrent), tostarla  con [BalenaEtcher](https://www.balena.io/etcher/) o similar, clonar el repo, ejecutar el script `RPi_provision.sh` e ir seleccionando lo que se quiere instalar. Por el mismo precio, mejor guardar un log, por elemplo algo así:
 
 `$ bash RPi_provision.sh | tee log_provision.txt` 
 
@@ -24,3 +24,5 @@ Lo ideal es, partir de una [Raspbian Buster Lite](https://downloads.raspberrypi.
 + MongoDB
 + Crear e instalar certificado Let’s Encrypt
 + Instalar Mate Desktop
+
++ Bonus: TextPattern CMS
