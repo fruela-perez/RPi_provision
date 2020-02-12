@@ -15,23 +15,29 @@ DEBIAN_FRONTEND=noninteractive
 GIT_USER="Fruela Pérez"
 GIT_EMAIL=fruela.perez@protonmail.com
 
+BASEDIR=$(dirname $0)
+
 clear
 
-echo "Creando usuario $NEW_USER"
-echo
-./create_user.sh $NEW_USER $NEW_USER_PWD sudoer
-
-echo
 echo "+-------------------------+"
 echo "|        .profile         |"
 echo "+-------------------------+"
 echo
-echo "Generando .profile para nuevo usuario..."
+echo "Generando nuevo .profile en /etc/skel..."
 echo
 sudo cp profile /home/$NEW_USER/.profile
+source ~/.profile
 echo
 echo "Generando .profile para el usuario root..."
 sudo cp root_profile /root/.profile
+
+echo "+-------------------------+"
+echo "|   Crear nuevo usuario   |"
+echo "+-------------------------+"
+echo
+echo "Creando usuario $NEW_USER"
+echo
+bash $BASEDIR/create_user.sh $NEW_USER $NEW_USER_PWD sudoer
 
 echo
 echo "+-------------------------+"
@@ -62,11 +68,21 @@ echo "+-------------------------+"
 echo "|      Basic cosillas     |"
 echo "+-------------------------+"
 echo
-sudo apt-get install -y --install-suggests vim 
-sudo apt-get install -y --install-suggests git
-sudo apt-get install -y --install-suggests htop
-sudo apt-get install -y --install-suggests gnupg
-sudo apt-get install -y --install-suggests debconf
+
+echo -n "¿Instalar paquetes sugeridos? [s/N] "
+read psugeridos
+
+if [ "$psugeridos" != "${respuesta#[Ss]}" ] ;then
+	SUGERIDOS="--install-suggests"
+else
+	SUGERIDOS=""
+fi
+
+sudo apt-get install -y $SUGERIDOS vim 
+sudo apt-get install -y $SUGERIDOS git
+sudo apt-get install -y $SUGERIDOS htop
+sudo apt-get install -y $SUGERIDOS gnupg
+sudo apt-get install -y $SUGERIDOS debconf
 
 echo
 echo "Configurar GIT"
@@ -104,7 +120,17 @@ read respuesta
 if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
     echo Instalando Apache...
     echo
-	sudo apt-get install -y --install-suggests dirmngr apache2
+
+	echo -n "¿Instalar paquetes sugeridos? [s/N] "
+	read psugeridos
+
+	if [ "$psugeridos" != "${respuesta#[Ss]}" ] ;then
+		SUGERIDOS="--install-suggests"
+	else
+		SUGERIDOS=""
+	fi
+
+	sudo apt-get install -y $SUGERIDOS dirmngr apache2
 	sudo apt-get -y autoremove
 else
     echo Omitiendo la instalación de Apache
@@ -119,13 +145,22 @@ read respuesta
 
 if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
     echo Instalando MariaDB...
-    echo	
+    echo
+	echo -n "¿Instalar paquetes sugeridos? [s/N] "
+	read psugeridos
+
+	if [ "$psugeridos" != "${respuesta#[Ss]}" ] ;then
+		SUGERIDOS="--install-suggests"
+	else
+		SUGERIDOS=""
+	fi
+
     sudo debconf-set-selections <<< "mariadb-server mysql-server/root_password password $PASSWORD"
     sudo debconf-set-selections <<< "mariadb-server mysql-server/root_password_again password $PASSWORD" 
     
-    sudo apt-get install -y --install-suggests mariadb-server mariadb-client python-mysqldb
-    sudo apt-get install -y --install-suggests mariadb-server-10.0
-    #sudo mysql_secure_installation
+    sudo apt-get install -y $SUGERIDOS mariadb-server mariadb-client python-mysqldb
+    sudo apt-get install -y $SUGERIDOS mariadb-server-10.0
+    sudo mysql_secure_installation
 else 
     echo Omitiendo la instalación de MariaDB
 fi
@@ -141,7 +176,15 @@ read respuesta
 if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
     echo Instalando PHP...
     echo
-	sudo apt-get install -y --install-suggests php php-common php-cli php-fpm php-json php7.3-common \
+	echo -n "¿Instalar paquetes sugeridos? [s/N] "
+	read psugeridos
+
+	if [ "$psugeridos" != "${respuesta#[Ss]}" ] ;then
+		SUGERIDOS="--install-suggests"
+	else
+		SUGERIDOS=""
+	fi
+	sudo apt-get install -y $SUGERIDOS php php-common php-cli php-fpm php-json php7.3-common \
 	php-mysql php-zip php-gd  php-mbstring php-curl php-xml php-pear \
 	php-bcmath php7.3-mysql libapache2-mod-php composer
 
@@ -161,7 +204,15 @@ read respuesta
 if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
     echo Instalando servidor FTP...
     echo
-	sudo apt-get install -y --install-suggests vsftpd
+	echo -n "¿Instalar paquetes sugeridos? [s/N] "
+	read psugeridos
+
+	if [ "$psugeridos" != "${respuesta#[Ss]}" ] ;then
+		SUGERIDOS="--install-suggests"
+	else
+		SUGERIDOS=""
+	fi    
+	sudo apt-get install -y $SUGERIDOS vsftpd
 	sudo cp vsftpd.conf /etc/vsftpd.conf
 	sudo service vsftpd restart
 else
@@ -221,9 +272,19 @@ echo "+-------------------------+"
 echo
 echo -n "Instalar nodejs? [s/N] "
 read respuesta
-
+echo
 if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
-	sudo apt-get install -y --install-suggests npm nodejs
+
+	echo -n "¿Instalar paquetes sugeridos para nodejs? [s/N] "
+	read psugeridos
+
+	if [ "$psugeridos" != "${respuesta#[Ss]}" ] ;then
+		SUGERIDOS="--install-suggests"
+	else
+		SUGERIDOS=""
+	fi
+
+	sudo apt-get install -y $SUGERIDOS npm nodejs
 else
     echo Omitiendo la instalación de nodejs
 fi
@@ -233,28 +294,25 @@ echo -n "Instalar mongodb? [s/N] "
 read respuesta
 
 if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
-	sudo apt-get install -y --install-suggests mongodb-server
+
+	echo -n "¿Instalar paquetes sugeridos? [s/N] "
+	read psugeridos
+
+	if [ "$psugeridos" != "${respuesta#[Ss]}" ] ;then
+		SUGERIDOS="--install-suggests"
+	else
+		SUGERIDOS=""
+	fi	
+	sudo apt-get install -y $SUGERIDOS mongodb-server
 else
     echo Omitiendo la instalación de nodejs
 fi
 
-echo
-echo "+-------------------------+"
-echo "|      Let’s Encrypt      |"
-echo "+-------------------------+"
-echo
-echo -n "Crear e instalar certificado https? [s/N] "
-read respuesta
+# +-------------------------+"
+# |      Let’s Encrypt      |"
+# +-------------------------+"
 
-if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
-    echo Creando e instalando certificado...
-    echo
-	sudo apt-get install -y --install-suggests python-certbot-apache
-	sudo apt-get install certbot
-	sudo certbot --apache
-else
-    echo Omitiendo la instalación del certificado
-fi
+bash $BASEDIR/lets_encrypt.sh
 
 echo "+-------------------------+"
 echo "| Retroflag Safe shutdown |"
