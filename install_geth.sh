@@ -16,6 +16,8 @@ if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
 	cd
 	rm geth-linux-arm7-$GETH_VERSION.tar.gz
 	sudo rm -rf geth-linux-arm7-$GETH_VERSION
+	echo
+	geth version
 else
     echo Omitiendo la instalación de Geth
 fi

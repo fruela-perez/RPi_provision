@@ -1,18 +1,14 @@
-#!/bin/bash
-
-SHELL=/bin/bash
-
 echo "+-------------------------+"
-echo "|           FTP           |"
+echo "|          APACHE         |"
 echo "+-------------------------+"
 echo
-echo -n "¿Instalar servidor FTP? [s/N] "
+echo -n "¿Instalar Apache? [s/N] "
 read respuesta
 
 if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
-    echo Instalando servidor FTP...
+    echo Instalando Apache...
     echo
-	
+
 	echo -n "¿Instalar paquetes sugeridos? [s/N] "
 	read psugeridos
 
@@ -22,7 +18,7 @@ if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
 		SUGERIDOS="-o APT::Install-Suggests=0"
 	fi
 
-    echo
+	echo
 	echo -n "¿Instalar paquetes recomendados? [s/N] "
 	read precomendados
 
@@ -32,9 +28,11 @@ if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
 		RECOMENDADOS="-o APT::Install-Recommends=0"
 	fi
 
-	sudo apt-get install -y $RECOMENDADOS $SUGERIDOS vsftpd
-	sudo cp files/vsftpd.conf /etc/vsftpd.conf
-	sudo service vsftpd restart
+	sudo apt-get install -y $RECOMENDADOS $SUGERIDOS dirmngr apache2
+	sudo apt-get -y autoremove
+
+	sudo cp files/000-default.conf /etc/apache2/sites-available/
+	sudo cp files/default-ssl.conf /etc/apache2/sites-available/
 else
-    echo Omitiendo la instalación del servidor FTP
+    echo Omitiendo la instalación de Apache
 fi
