@@ -2,7 +2,9 @@
 
 Instalar *cosas* en una Raspberry Pi. **Probado en placas 3B, 3B+ y 3A+ con Raspbian.**
 
-Lo ideal es, partiendo de una [Raspbian Buster Lite](https://downloads.raspberrypi.org/raspbian_full_latest.torrent), tostarla  con [BalenaEtcher](https://www.balena.io/etcher/) o similar, instalar git (que no está incluido en la versión Lite), clonar el repo, ejecutar el script `RPi_provision.sh` e ir seleccionando lo que se quiere instalar (N.B. Si seleccionas los paquetes recomendados y sugeridos, te puede llevar media vida terminar la instalación). Por el mismo precio, mejor guardar un log, por elemplo algo así:
+Lo ideal es, partiendo de una [Raspbian Buster Lite](https://downloads.raspberrypi.org/raspbian_full_latest.torrent), tostarla  con [BalenaEtcher](https://www.balena.io/etcher/) o similar, instalar git (que no está incluido en la versión Lite), clonar el repo, ejecutar el script `RPi_provision.sh` e ir seleccionando lo que se quiere instalar (**N.B.:** Si seleccionas los paquetes recomendados y sugeridos, te puede llevar media vida terminar la instalación). 
+
+Por el mismo precio, mejor guardar un log, por elemplo algo así:
 
 `$ bash RPi_provision.sh | tee log_provision.txt` 
 
@@ -25,4 +27,4 @@ Lo ideal es, partiendo de una [Raspbian Buster Lite](https://downloads.raspberry
 + Crear e instalar certificado Let’s Encrypt
 + Instalar Mate Desktop (lo siento, pero Pixel me da repelús)
 
-+ Bonus: TextPattern CMS (under construction)
++ Bonus: [TextPattern CMS](https://textpattern.com/) (under construction)
