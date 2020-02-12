@@ -22,6 +22,3 @@ else
 		echo
 	fi
 fi
-
-echo
-

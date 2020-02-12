@@ -72,7 +72,7 @@ echo
 echo -n "¿Instalar paquetes sugeridos? [s/N] "
 read psugeridos
 
-if [ "$psugeridos" != "${respuesta#[Ss]}" ] ;then
+if [ "$psugeridos" = "${respuesta#[Ss]}" ] ;then
 	SUGERIDOS="--install-suggests"
 else
 	SUGERIDOS=""
@@ -124,13 +124,13 @@ if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
 	echo -n "¿Instalar paquetes sugeridos? [s/N] "
 	read psugeridos
 
-	if [ "$psugeridos" != "${respuesta#[Ss]}" ] ;then
+	if [ "$psugeridos" = "${respuesta#[Ss]}" ] ;then
 		SUGERIDOS="--install-suggests"
 	else
 		SUGERIDOS=""
 	fi
 
-	sudo apt-get install -y $SUGERIDOS apache2
+	sudo apt-get install -y $SUGERIDOS dirmngr apache2
 	sudo apt-get -y autoremove
 else
     echo Omitiendo la instalación de Apache
@@ -149,7 +149,7 @@ if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
 	echo -n "¿Instalar paquetes sugeridos? [s/N] "
 	read psugeridos
 
-	if [ "$psugeridos" != "${respuesta#[Ss]}" ] ;then
+	if [ "$psugeridos" = "${respuesta#[Ss]}" ] ;then
 		SUGERIDOS="--install-suggests"
 	else
 		SUGERIDOS=""
@@ -179,7 +179,7 @@ if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
 	echo -n "¿Instalar paquetes sugeridos? [s/N] "
 	read psugeridos
 
-	if [ "$psugeridos" != "${respuesta#[Ss]}" ] ;then
+	if [ "$psugeridos" = "${respuesta#[Ss]}" ] ;then
 		SUGERIDOS="--install-suggests"
 	else
 		SUGERIDOS=""
@@ -207,7 +207,7 @@ if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
 	echo -n "¿Instalar paquetes sugeridos? [s/N] "
 	read psugeridos
 
-	if [ "$psugeridos" != "${respuesta#[Ss]}" ] ;then
+	if [ "$psugeridos" = "${respuesta#[Ss]}" ] ;then
 		SUGERIDOS="--install-suggests"
 	else
 		SUGERIDOS=""
@@ -278,7 +278,7 @@ if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
 	echo -n "¿Instalar paquetes sugeridos para nodejs? [s/N] "
 	read psugeridos
 
-	if [ "$psugeridos" != "${respuesta#[Ss]}" ] ;then
+	if [ "$psugeridos" = "${respuesta#[Ss]}" ] ;then
 		SUGERIDOS="--install-suggests"
 	else
 		SUGERIDOS=""
@@ -298,7 +298,7 @@ if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
 	echo -n "¿Instalar paquetes sugeridos? [s/N] "
 	read psugeridos
 
-	if [ "$psugeridos" != "${respuesta#[Ss]}" ] ;then
+	if [ "$psugeridos" = "${respuesta#[Ss]}" ] ;then
 		SUGERIDOS="--install-suggests"
 	else
 		SUGERIDOS=""
