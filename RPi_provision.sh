@@ -62,9 +62,10 @@ bash $BASEDIR/install_php.sh
 bash $BASEDIR/install_ftp.sh
 bash $BASEDIR/install_golang.sh
 bash $BASEDIR/install_geth.sh
-bash $BASEDIR/install_geth.sh
+bash $BASEDIR/install_mean.sh
 bash $BASEDIR/lets_encrypt.sh
-bash $BASEDIR/lets_encrypt.sh
+bash $BASEDIR/textpattern.sh
+bash $BASEDIR/install_mate_desktop.sh
 
 sudo apt-get -y autoremove
 
