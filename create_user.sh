@@ -5,12 +5,7 @@ if [ $# -lt 2 ] ;then
 	exit 1
 fi
 
-#grep -c '^$1:' /etc/passwd > /dev/null 2&>1
-#getent passwd $1 > /dev/null 2&>1
-
 if id "$1" >/dev/null 2>&1; then
-
-#if [ $? -eq 1 ]; then
 	echo "El usuario $1 ya existe."
 	echo
 	exit 2
