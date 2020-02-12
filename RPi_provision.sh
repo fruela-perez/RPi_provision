@@ -120,6 +120,7 @@ read respuesta
 if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
     echo Instalando Apache...
     echo
+
 	echo -n "¿Instalar paquetes sugeridos? [s/N] "
 	read psugeridos
 
@@ -129,7 +130,7 @@ if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
 		SUGERIDOS=""
 	fi
 
-	sudo apt-get install -y $SUGERIDOS dirmngr apache2
+	sudo apt-get install -y $SUGERIDOS apache2
 	sudo apt-get -y autoremove
 else
     echo Omitiendo la instalación de Apache
