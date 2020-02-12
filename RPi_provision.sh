@@ -25,8 +25,8 @@ echo "+-------------------------+"
 echo
 echo "Generando nuevo .profile en /etc/skel..."
 echo
-sudo cp profile /home/$NEW_USER/.profile
-source ~/.profile
+sudo rm /etc/skel/.profile
+sudo cp profile /etc/skel/.profile
 echo
 echo "Generando .profile para el usuario root..."
 sudo cp root_profile /root/.profile
