@@ -32,7 +32,7 @@ if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
 		RECOMENDADOS="-o APT::Install-Recommends=0"
 	fi
 
-	sudo apt-get install -y $RECOMENDADOSÇ $SUGERIDOS vsftpd
+	sudo apt-get install -y $RECOMENDADOS $SUGERIDOS vsftpd
 	sudo cp vsftpd.conf /etc/vsftpd.conf
 	sudo service vsftpd restart
 else
