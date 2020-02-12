@@ -1,5 +1,4 @@
 if [ $# -lt 2 ] ;then
-	echo
 	echo "Uso: create_user.sh <usuario> <password> [sudoer]"
 	echo
 	exit 1
@@ -10,12 +9,6 @@ if id "$1" >/dev/null 2>&1; then
 	echo
 	exit 2
 else
-
-	echo
-	echo "+---------------------------+"
-	echo "| Crear usuario $1"
-	echo "+---------------------------+"
-	echo
 	sudo useradd -m $1
 	echo -e "$2\n$2" | sudo passwd -q 2>&1 $NEW_USER 2>/dev/null
 

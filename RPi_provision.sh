@@ -82,7 +82,7 @@ sudo apt-get install -y $SUGERIDOS vim
 sudo apt-get install -y $SUGERIDOS git
 sudo apt-get install -y $SUGERIDOS htop
 sudo apt-get install -y $SUGERIDOS gnupg
-sudo apt-get install -y $SUGERIDOS debconf
+# sudo apt-get install -y $SUGERIDOS debconf
 
 echo
 echo "Configurar GIT"
@@ -120,7 +120,6 @@ read respuesta
 if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
     echo Instalando Apache...
     echo
-
 	echo -n "¿Instalar paquetes sugeridos? [s/N] "
 	read psugeridos
 
