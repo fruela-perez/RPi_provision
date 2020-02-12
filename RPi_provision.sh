@@ -16,10 +16,10 @@ echo
 echo "Generando nuevo .profile en /etc/skel..."
 echo
 sudo rm /etc/skel/.profile
-sudo cp profile /etc/skel/.profile
+sudo cp $BASEDIR/files/profile /etc/skel/.profile
 echo
 echo "Generando .profile para el usuario root..."
-sudo cp root_profile /root/.profile
+sudo cp $BASEDIR/files/root_profile /root/.profile
 
 echo "+-------------------------+"
 echo "|   Crear nuevo usuario   |"
