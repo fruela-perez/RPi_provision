@@ -78,10 +78,10 @@ else
 	SUGERIDOS=""
 fi
 
-sudo apt-get install -y $SUGERIDOS vim 
-sudo apt-get install -y $SUGERIDOS git
-sudo apt-get install -y $SUGERIDOS htop
-sudo apt-get install -y $SUGERIDOS gnupg
+sudo apt-get install -y --no-install-recommends $SUGERIDOS vim 
+sudo apt-get install -y --no-install-recommends $SUGERIDOS git
+sudo apt-get install -y --no-install-recommends $SUGERIDOS htop
+sudo apt-get install -y --no-install-recommends $SUGERIDOS gnupg
 # sudo apt-get install -y $SUGERIDOS debconf
 
 echo
@@ -130,7 +130,7 @@ if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
 		SUGERIDOS=""
 	fi
 
-	sudo apt-get install -y $SUGERIDOS dirmngr apache2
+	sudo apt-get install -y --no-install-recommends $SUGERIDOS dirmngr apache2
 	sudo apt-get -y autoremove
 else
     echo Omitiendo la instalación de Apache
@@ -158,8 +158,8 @@ if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
     sudo debconf-set-selections <<< "mariadb-server mysql-server/root_password password $PASSWORD"
     sudo debconf-set-selections <<< "mariadb-server mysql-server/root_password_again password $PASSWORD" 
     
-    sudo apt-get install -y $SUGERIDOS mariadb-server mariadb-client python-mysqldb
-    sudo apt-get install -y $SUGERIDOS mariadb-server-10.0
+    sudo apt-get install -y --no-install-recommends $SUGERIDOS mariadb-server mariadb-client python-mysqldb
+    sudo apt-get install -y --no-install-recommends $SUGERIDOS mariadb-server-10.0
     sudo mysql_secure_installation
 else 
     echo Omitiendo la instalación de MariaDB
@@ -184,7 +184,7 @@ if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
 	else
 		SUGERIDOS=""
 	fi
-	sudo apt-get install -y $SUGERIDOS php php-common php-cli php-fpm php-json php7.3-common \
+	sudo apt-get install -y --no-install-recommends $SUGERIDOS php php-common php-cli php-fpm php-json php7.3-common \
 	php-mysql php-zip php-gd  php-mbstring php-curl php-xml php-pear \
 	php-bcmath php7.3-mysql libapache2-mod-php composer
 
@@ -212,7 +212,7 @@ if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
 	else
 		SUGERIDOS=""
 	fi    
-	sudo apt-get install -y $SUGERIDOS vsftpd
+	sudo apt-get install -y --no-install-recommends $SUGERIDOS vsftpd
 	sudo cp vsftpd.conf /etc/vsftpd.conf
 	sudo service vsftpd restart
 else
@@ -284,14 +284,14 @@ if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
 		SUGERIDOS=""
 	fi
 
-	sudo apt-get install -y $SUGERIDOS npm nodejs
+	sudo apt-get install -y --no-install-recommends $SUGERIDOS npm nodejs
 else
     echo Omitiendo la instalación de nodejs
 fi
 
 echo
 echo -n "Instalar mongodb? [s/N] "
-read respuesta
+read respuesta  
 
 if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
 
@@ -303,7 +303,7 @@ if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
 	else
 		SUGERIDOS=""
 	fi	
-	sudo apt-get install -y $SUGERIDOS mongodb-server
+	sudo apt-get install -y --no-install-recommends $SUGERIDOS mongodb-server
 else
     echo Omitiendo la instalación de nodejs
 fi
