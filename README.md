@@ -1,10 +1,12 @@
 # RPi_provision versión 0.1.5
 
-Instalar *cosas* en una Raspberry Pi. **Probado en placas 3B, 3B+ y 3A+ con Raspbian.**
+Instalar *cosas* en una Raspberry Pi. 
 
-Lo ideal es, partiendo de una [Raspbian Buster Lite](https://downloads.raspberrypi.org/raspbian_full_latest.torrent), tostarla  con [BalenaEtcher](https://www.balena.io/etcher/) o similar, instalar git (que no está incluido en la versión Lite), clonar el repo, ejecutar el script `RPi_provision.sh` e ir seleccionando lo que se quiere instalar (**N.B.:** Si seleccionas los paquetes recomendados y sugeridos, te puede llevar media vida terminar la instalación). 
+**Probado en placas 3B, 3B+ y 3A+ con Raspbian *Buster* Lite.**
 
-Por el mismo precio, mejor guardar un log, por elemplo algo así:
+Lo ideal es tostar una [Raspbian Buster Lite](https://downloads.raspberrypi.org/raspbian_full_latest.torrent) con [BalenaEtcher](https://www.balena.io/etcher/) o similar, instalar git (que no está incluido en la versión Lite), clonar el repo, ejecutar el script `RPi_provision.sh` e ir seleccionando lo que se quiere instalar (**N.B.:** Si seleccionas los paquetes recomendados y sugeridos, te puede llevar media vida terminar la instalación). La idea no es instalarlo todo, sólo las herramientas necesarias.
+
+Por el mismo precio, durante la  ejecución de la instalación, casi mejor guardar un log; por elemplo tal que así:
 
 `$ bash RPi_provision.sh | tee log_provision.txt` 
 
