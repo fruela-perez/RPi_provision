@@ -16,7 +16,7 @@ Por el mismo precio, durante la  ejecución de la instalación, casi mejor guard
 + Safe shutdown para cajas Retroflag (NesPi+ y MegaPi)
 + Añadir aliases, modificar PS1 y otras cosillas al .profile del nuevo usuario y root
 + Actualizar paquetes del sistema
-+ Actualizar el *firmware* de la RPi (bajo tu responsabilidad, si conviertes en un ladrillo tu RPi yo no quiero saber nada)
++ Actualizar el *firmware* de la RPi (bajo tu responsabilidad, si se convierte en un ladrillo yo no quiero saber nada)
 + Instalar herramientas básicas (vim, htop, git, gnupg, debconf, et al.)
 + Apache y PHP
 + MariaDB
