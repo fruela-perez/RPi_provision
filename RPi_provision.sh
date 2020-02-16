@@ -18,6 +18,9 @@ echo
 sudo rm /etc/skel/.profile
 sudo cp $BASEDIR/files/profile /etc/skel/.profile
 echo
+echo "Para eliminar mensaje GNU licence and 'no warranty' al logearse por ssh..."
+sudo touch /etc/skel/.hushlogin
+echo
 echo "Generando .profile para el usuario root..."
 sudo cp $BASEDIR/files/root_profile /root/.profile
 
