@@ -68,6 +68,8 @@ bash $BASEDIR/install_geth.sh
 bash $BASEDIR/install_mean.sh
 bash $BASEDIR/lets_encrypt.sh
 bash $BASEDIR/textpattern.sh
+bash $BASEDIR/install_GoAccess.sh
+bash $BASEDIR/instalar_Pi4j.sh
 bash $BASEDIR/install_mate_desktop.sh
 
 sudo apt-get -y autoremove
