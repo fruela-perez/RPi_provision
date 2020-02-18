@@ -72,6 +72,10 @@ bash $BASEDIR/install_GoAccess.sh
 bash $BASEDIR/instalar_Pi4j.sh
 bash $BASEDIR/install_mate_desktop.sh
 
+sudo du -sh /var/cache/apt
+
 sudo apt-get -y autoremove && sudo apt-get clean
+
+sudo du -sh /var/cache/apt
 
 bash $BASEDIR/install_safe_shutdown.sh
