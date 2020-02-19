@@ -56,8 +56,8 @@ if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
         rm phpMyAdmin-$VERSION-all-languages.tar.gz
         sudo ln -s /var/www/html/phpMyAdmin-$VERSION-all-languages/ /var/www/html/phpMyAdmin
         
-        sed -i "s/define('TEMP_DIR', '.\/tmp\/');/define('TEMP_DIR', '\/tmp\/');/g" vendor_config.php
-        sed -i "s/define('CONFIG_DIR', '');/define('CONFIG_DIR', '\/etc\/phpmyadmin\/');/g" vendor_config.php
+        sed -i "s/define('TEMP_DIR', '.\/tmp\/');/define('TEMP_DIR', '\/tmp\/');/g" /var/www/html/phpMyAdmin/libraries/vendor_config.php
+        sed -i "s/define('CONFIG_DIR', '');/define('CONFIG_DIR', '\/etc\/phpmyadmin\/');/g" /var/www/html/phpMyAdmin/libraries/vendor_config.php
 
         sudo service apache2 restart
     else 
