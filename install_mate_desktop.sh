@@ -21,8 +21,8 @@ if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
 	sudo apt-get install -y -o APT::Install-Recommends=0 -o APT::Install-Suggests=0 \
 	     xorg lightdm lightdm-gtk-greeter mate-desktop-environment blueman \
 	     network-manager-gnome pulseaudio pulseaudio-module-bluetooth pavucontrol \
-		 bluez-firmware pi-package rc-gui mate-tweak lightdm-gtk-greeter-settings \
-		 samba menulibre
+		   bluez-firmware pi-package rc-gui mate-tweak lightdm-gtk-greeter-settings \
+		   samba menulibre
 	echo
 	echo "+------------------------------------------------+"
 	echo "| Instalando Mate Desktop: paquetes adicionales. |"
@@ -30,7 +30,7 @@ if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
 	echo
 	sudo apt-get install -y -o APT::Install-Recommends=0 -o APT::Install-Suggests=0 \
 	     vlc kodi wireshark remmina ttf-mscorefonts-installer fonts-ubuntu \
-	      human-icon-theme xrdp gparted mate-desktop-environment-extras arc-theme numix-gtk-theme
+	     human-icon-theme xrdp gparted mate-desktop-environment-extras arc-theme numix-gtk-theme
 	echo
 	echo "+-------------------------+"
 	echo "| Instalando apps útiles. |"
@@ -58,18 +58,10 @@ if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
 	sudo echo "[Configuration]" >> /etc/polkit-1/localauthority.conf.d/60-desktop-policy.conf
 	sudo echo "AdminIdentities=unix-user:pi;unix-user:0" >> /etc/polkit-1/localauthority.conf.d/60-desktop-policy.conf
 
+	echo "Es necesario reiniciar. Pulsa la tecla Any..."
+	read tecla
+
 	sudo reboot
-
-
-
-
-
-
-
-
-
-
-
 else
     echo Omitiendo la instalación
 fi
