@@ -48,7 +48,18 @@ if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
     read respuesta
 
     if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
-        sudo apt-get -y install phpmyadmin
+
+        VERSION=4.9.4
+
+        wget https://files.phpmyadmin.net/phpMyAdmin/$VERSION/phpMyAdmin-$VERSION-all-languages.tar.gz
+        sudo tar zxvf phpMyAdmin-$VERSION-all-languages.tar.gz -C /var/www/html
+        rm phpMyAdmin-$VERSION-all-languages.tar.gz
+        sudo ln -s /var/www/html/phpMyAdmin-$VERSION-all-languages/ /var/www/html/phpMyAdmin
+        
+        sed -i "s/define('TEMP_DIR', '.\/tmp\/');/define('TEMP_DIR', '\/tmp\/');/g" vendor_config.php
+        sed -i "s/define('CONFIG_DIR', '');/define('CONFIG_DIR', '\/etc\/phpmyadmin\/');/g" vendor_config.php
+
+        sudo service apache2 restart
     else 
         echo Omitiendo la instalación de PhpMyAdmin
     fi
