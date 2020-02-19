@@ -39,6 +39,23 @@ if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
     
     sudo apt-get install -y $RECOMENDADOS $SUGERIDOS mariadb-server mariadb-client python-mysqldb
     sudo mysql_secure_installation
+
+    echo "+-------------------------+"
+    echo "|        PhpMyAdmin       |"
+    echo "+-------------------------+"
+    echo
+    echo -n "¿Instalar PhpMyAdmin? [s/N] "
+    read respuesta
+
+    if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
+        sudo apt-get -y install phpmyadmin
+    else 
+        echo Omitiendo la instalación de PhpMyAdmin
+    fi
+
 else 
     echo Omitiendo la instalación de MariaDB
 fi
+
+
+
