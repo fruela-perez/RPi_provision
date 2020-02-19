@@ -3,7 +3,7 @@
 SHELL=/bin/bash
 
 echo "+-------------------------+"
-echo "|           FTP           |"
+echo "|        FTP Server       |"
 echo "+-------------------------+"
 echo
 echo -n "¿Instalar servidor FTP? [s/N] "

@@ -57,7 +57,7 @@ else
     echo Omitiendo la actualización del firmware de la RPi
 fi
 
-bash $BASEDIR/basic_stuff.sh
+bash $BASEDIR/install_basic_stuff.sh
 bash $BASEDIR/install_ssh.sh
 bash $BASEDIR/install_apache.sh
 bash $BASEDIR/install_mariadb.sh
@@ -65,12 +65,18 @@ bash $BASEDIR/install_php.sh
 bash $BASEDIR/install_ftp.sh
 bash $BASEDIR/install_golang.sh
 bash $BASEDIR/install_geth.sh
-bash $BASEDIR/install_mean.sh
-bash $BASEDIR/lets_encrypt.sh
-bash $BASEDIR/textpattern.sh
+bash $BASEDIR/install_nodejs_mongodb.sh
+bash $BASEDIR/install_lets_encrypt_cert.sh
+bash $BASEDIR/install_textpattern.sh
 bash $BASEDIR/install_GoAccess.sh
-bash $BASEDIR/instalar_Pi4j.sh
+bash $BASEDIR/install_Pi4j.sh
 bash $BASEDIR/install_mate_desktop.sh
+
+echo
+echo "+-------------------------+"
+echo "|    Vaciar caché APT     |"
+echo "+-------------------------+"
+echo
 
 sudo du -sh /var/cache/apt
 
