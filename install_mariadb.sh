@@ -54,7 +54,7 @@ if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
         wget https://files.phpmyadmin.net/phpMyAdmin/$VERSION/phpMyAdmin-$VERSION-all-languages.tar.gz
         sudo tar zxvf phpMyAdmin-$VERSION-all-languages.tar.gz -C /var/www/html
         rm phpMyAdmin-$VERSION-all-languages.tar.gz
-        sudo ln -s /var/www/html/phpMyAdmin-$VERSION-all-languages/ /var/www/html/phpMyAdmin
+        sudo ln -s /var/www/html/phpMyAdmin-$VERSION-all-languages/ /var/www/html/phpmyadmin
         
         sudo sed -i "s/define('TEMP_DIR', '.\/tmp\/');/define('TEMP_DIR', '\/tmp\/');/g" /var/www/html/phpMyAdmin/libraries/vendor_config.php
         sudo sed -i "s/define('CONFIG_DIR', '');/define('CONFIG_DIR', '\/etc\/phpmyadmin\/');/g" /var/www/html/phpMyAdmin/libraries/vendor_config.php
