@@ -1,4 +1,4 @@
-# RPi Provision - versión 0.1.6
+# RPi Provision - versión 0.1.7
 
 Instalar *cosas* en una Raspberry Pi. 
 
@@ -10,7 +10,7 @@ La idea no es instalarlo todo, sólo el software que necesites.
 
 Por el mismo precio, casi mejor guardar un log de la instalación; por elemplo tal que así:
 
-`$ bash RPi_provision.sh | tee log_provision.txt` 
+`$ bash setup.sh | tee log_provision.txt` 
 
 ## Opciones disponibles
 
