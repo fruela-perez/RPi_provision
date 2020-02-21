@@ -20,9 +20,7 @@ Instalar *cosas* en una Raspberry Pi.
 
 ## Opciones disponibles
 
-+ Crear un usuario (editar variables usuario/password antes de lanzar el script)
-+ Safe shutdown para cajas Retroflag (NesPi+ y MegaPi)
-+ Añadir aliases, modificar PS1 y otras cosillas al .profile del nuevo usuario y root
++ Añadir aliases, modificar PS1 y otras cosillas al .profile del usuario `pi`, `root` y en `/etc/skel`
 + Actualizar paquetes del sistema
 + Actualizar el *firmware* de la RPi (bajo tu responsabilidad, si se convierte en un ladrillo yo no quiero saber nada)
 + *basic stuff* (vim, htop, git, gnupg, debconf, et al.)
@@ -35,7 +33,10 @@ Instalar *cosas* en una Raspberry Pi.
 + Node.js y MongoDB
 + [WiringPi](http://wiringpi.com/) y [Pi4J](https://pi4j.com/1.2/index.html)
 + NetBeans
-+ Crear e instalar certificado de Let’s Encrypt
++ Crear e instalar certificado de [Let’s Encrypt](https://letsencrypt.org/)
 + Mate Desktop
 + [MediaWiki](https://www.mediawiki.org/wiki/MediaWiki)
 + [TextPattern CMS](https://textpattern.com/)
++ Crear un nuevo usuario.
++ Eliminar el usuario `pi`.
++ Instalar *safe shutdown* para cajas [Retroflag](http://retroflag.com/) (NesPi+ y MegaPi).
