@@ -1,7 +1,5 @@
 #!/bin/bash
 
-GOACCESS_VERSION=1.3
-
 echo "+-------------------------+"
 echo "| GoAccess - Apache Stats |"
 echo "+-------------------------+"

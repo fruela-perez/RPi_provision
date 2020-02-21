@@ -1,7 +1,5 @@
 #!/bin/bash
 
-SHELL=/bin/bash
-
 echo "+-------------------------+"
 echo "|        FTP Server       |"
 echo "+-------------------------+"

@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo "+-------------------------+"
 echo "|           SSH           |"
 echo "+-------------------------+"
@@ -8,11 +10,12 @@ read respuesta
 if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
     echo Instalando servidor SSH...
     echo
-	sudo systemctl enable ssh
-	sudo systemctl start ssh
-	# Remove GNU licence and 'no warranty' when logging into ssh
-	touch ~/.hushlogin
-	sudo touch /etc/skel/.hushlogin
+
+  	sudo systemctl enable ssh
+  	sudo systemctl start ssh
+  	
+    # Remove GNU licence and 'no warranty' when logging into ssh
+  	touch ~/.hushlogin
 else
     echo Omitiendo la instalación del servidor SSH
 fi

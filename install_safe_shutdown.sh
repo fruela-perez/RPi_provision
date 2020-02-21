@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo "+-------------------------+"
 echo "| Retroflag Safe shutdown |"
 echo "+-------------------------+"

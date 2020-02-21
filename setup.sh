@@ -1,13 +1,8 @@
 #!/bin/bash
 
-SHELL=/bin/bash
-DEBIAN_FRONTEND=noninteractive 
-BASEDIR=$(dirname $0)
-
-NEW_USER='fruela'
-NEW_USER_PWD='1234' # No uses una contraseña así de cutre, porfa ;)
-
 clear
+
+source settings.sh
 
 echo "+-------------------------+"
 echo "|        .profile         |"
@@ -30,7 +25,7 @@ echo "+-------------------------+"
 echo
 echo "Creando usuario $NEW_USER"
 echo
-bash $BASEDIR/create_user.sh $NEW_USER $NEW_USER_PWD sudoer
+source $BASEDIR/create_user.sh $NEW_USER $NEW_USER_PWD sudoer
 
 echo
 echo "+-------------------------+"
@@ -57,20 +52,20 @@ else
     echo Omitiendo la actualización del firmware de la RPi
 fi
 
-bash $BASEDIR/install_basic_stuff.sh
-bash $BASEDIR/install_ssh.sh
-bash $BASEDIR/install_apache.sh
-bash $BASEDIR/install_mariadb.sh
-bash $BASEDIR/install_php.sh
-bash $BASEDIR/install_ftp.sh
-bash $BASEDIR/install_golang.sh
-bash $BASEDIR/install_geth.sh
-bash $BASEDIR/install_nodejs_mongodb.sh
-bash $BASEDIR/install_lets_encrypt_cert.sh
-bash $BASEDIR/install_textpattern.sh
-bash $BASEDIR/install_GoAccess.sh
-bash $BASEDIR/install_Pi4j.sh
-bash $BASEDIR/install_mate_desktop.sh
+source $BASEDIR/install_basic_stuff.sh
+source $BASEDIR/install_ssh.sh
+source $BASEDIR/install_apache.sh
+source $BASEDIR/install_mariadb.sh
+source $BASEDIR/install_php.sh
+source $BASEDIR/install_ftp.sh
+source $BASEDIR/install_golang.sh
+source $BASEDIR/install_geth.sh
+source $BASEDIR/install_nodejs_mongodb.sh
+source $BASEDIR/install_lets_encrypt_cert.sh
+source $BASEDIR/install_textpattern.sh
+source $BASEDIR/install_GoAccess.sh
+source $BASEDIR/install_Pi4j.sh
+source $BASEDIR/install_mate_desktop.sh
 
 echo
 echo "+-------------------------+"
@@ -84,4 +79,4 @@ sudo apt-get -y autoremove && sudo apt-get clean
 
 sudo du -sh /var/cache/apt
 
-bash $BASEDIR/install_safe_shutdown.sh
+source $BASEDIR/install_safe_shutdown.sh

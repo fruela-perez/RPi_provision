@@ -1,4 +1,4 @@
-GO_VERSION=1.13.7
+#!/bin/bash
 
 echo "+-------------------------+"
 echo "|         GOLANG          |"

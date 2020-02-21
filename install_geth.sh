@@ -1,4 +1,4 @@
-GETH_VERSION=1.9.6-bd059680
+#!/bin/bash
 
 echo "+-------------------------+"
 echo "|           GETH          |"

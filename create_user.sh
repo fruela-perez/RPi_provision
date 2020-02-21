@@ -1,3 +1,5 @@
+#!/bin/bash
+
 if [ $# -lt 2 ] ;then
 	echo "Uso: create_user.sh <usuario> <password> [sudoer]"
 	exit 1

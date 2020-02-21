@@ -1,9 +1,5 @@
 #!/bin/bash
-
-SHELL=/bin/bash
-
-MYSQL_ROOT_PWD='1234' # Ni se te ocurra usar esto como password xD
-
+ 
 echo "+-------------------------+"
 echo "|         MariaDB         |"
 echo "+-------------------------+"
@@ -34,8 +30,8 @@ if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
         RECOMENDADOS="-o APT::Install-Recommends=0"
     fi
 
-    sudo debconf-set-selections <<< "mariadb-server mysql-server/root_password password $PASSWORD"
-    sudo debconf-set-selections <<< "mariadb-server mysql-server/root_password_again password $PASSWORD" 
+    sudo debconf-set-selections <<< "mariadb-server mysql-server/root_password password $MYSQL_ROOT_PWD"
+    sudo debconf-set-selections <<< "mariadb-server mysql-server/root_password_again password $MYSQL_ROOT_PWD" 
     
     sudo apt-get install -y $RECOMENDADOS $SUGERIDOS mariadb-server mariadb-client python-mysqldb
     sudo mysql_secure_installation
@@ -49,12 +45,10 @@ if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
 
     if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
 
-        VERSION=4.9.4
-
-        wget https://files.phpmyadmin.net/phpMyAdmin/$VERSION/phpMyAdmin-$VERSION-all-languages.tar.gz
-        sudo tar zxvf phpMyAdmin-$VERSION-all-languages.tar.gz -C /var/www/html
-        rm phpMyAdmin-$VERSION-all-languages.tar.gz
-        sudo ln -s /var/www/html/phpMyAdmin-$VERSION-all-languages/ /var/www/html/phpmyadmin
+        wget https://files.phpmyadmin.net/phpMyAdmin/$VERSION/phpMyAdmin-$PHPMYADMIN_VERSION-all-languages.tar.gz
+        sudo tar zxvf phpMyAdmin-$PHPMYADMIN_VERSION-all-languages.tar.gz -C /var/www/html
+        rm phpMyAdmin-$PHPMYADMIN_VERSION-all-languages.tar.gz
+        sudo ln -s /var/www/html/phpMyAdmin-$PHPMYADMIN_VERSION-all-languages/ /var/www/html/phpmyadmin
         
         # Modificar parámetros de configuración en vendor_config.php --> 
         
@@ -69,6 +63,3 @@ if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
 else 
     echo Omitiendo la instalación de MariaDB
 fi
-
-
-

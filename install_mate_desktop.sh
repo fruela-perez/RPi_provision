@@ -1,9 +1,5 @@
 #!/bin/bash
 
-SHELL=/bin/bash
-
-# Instalar Mate Desktop
-
 echo "+-------------------------+"
 echo "|       Mate Desktop      |"
 echo "+-------------------------+"
