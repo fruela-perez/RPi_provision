@@ -30,6 +30,7 @@ sudo apt-get install -y $RECOMENDADOS $SUGERIDOS git
 sudo apt-get install -y $RECOMENDADOS $SUGERIDOS htop
 sudo apt-get install -y $RECOMENDADOS $SUGERIDOS gnupg
 sudo apt-get install -y $RECOMENDADOS $SUGERIDOS debconf
+sudo apt-get install -y $RECOMENDADOS $SUGERIDOS iftop
 
 echo
 echo "Configurar GIT"
