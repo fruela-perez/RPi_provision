@@ -1,4 +1,4 @@
-# RPi Provision - versión 0.1.7
+# RPi Provision - versión 0.2
 
 Instalar *cosas* en una Raspberry Pi. 
 
@@ -15,7 +15,8 @@ Instalar *cosas* en una Raspberry Pi.
    5. Establece la zona horaria.
 3. Instalar git (no está incluido en la versión Lite): `sudo apt-get install -y git`.
 4. Clonar el repositorio: `git clone https://github.com/fruela-perez/RPi_provision.git`.
-5. Ejecutar el script `setup.sh` e ir seleccionando lo que se quiere instalar (**N.B.:** Si seleccionas los paquetes recomendados y sugeridos, te puede llevar media vida terminar la instalación). 
+5. Editar el archivo `settings.sh`, modificar usuarios, passwords y números de versión según proceda.
+6. Ejecutar el script `setup.sh` e ir seleccionando lo que se quiere instalar (**N.B.:** Si seleccionas los paquetes recomendados y sugeridos, te puede llevar media vida terminar la instalación). 
 
 ## Opciones disponibles
 
