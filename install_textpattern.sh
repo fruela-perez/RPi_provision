@@ -26,7 +26,7 @@ if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
 		unzip textpattern-$TEXTPATTERN_VERSION.zip
 		rm textpattern-$TEXTPATTERN_VERSION.zip
 
-		mysql -u root -p$MYSQL_ROOT_PWD < create_textpattern_database.sql	
+		mysql -u root -p$MYSQL_ROOT_PWD < $(dirname $0)/create_textpattern_database.sql	
 	else
 		echo "Ha fallado la comprobación de la integridad de textpattern-$TEXTPATTERN_VERSION.zip :("
 		echo "Abortando."

@@ -11,6 +11,10 @@ if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
     echo Instalando MariaDB...
     echo
 
+    if [ -z $TEXTPATTERN_VERSION ] ;then
+        source $(dirname $0)/settings.sh
+    fi
+    
     echo -n "¿Instalar paquetes sugeridos? [s/N] "
     read psugeridos
 
