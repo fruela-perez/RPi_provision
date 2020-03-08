@@ -5,8 +5,10 @@ echo "|      Basic cosillas     |"
 echo "+-------------------------+"
 echo
 
+SETTINGS=$(readlink -f $(dirname $0))/settings.sh
+
 if [ -z $GIT_USER ] ;then
-	source $(dirname $0)/settings.sh
+	source $SETTINGS
 fi
 
 echo -n "¿Instalar paquetes sugeridos? [s/N] "

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+SETTINGS=$(readlink -f $(dirname $0))/settings.sh
+
 echo "+-------------------------+"
 echo "|        MEDIAWIKI        |"
 echo "+-------------------------+"
@@ -10,7 +12,7 @@ read respuesta
 if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
 
 	if [ -z $MEDIAWIKI_VERSION ] ;then
-		source $(dirname $0)/settings.sh
+		source $SETTINGS
 	fi
 
 	cd
