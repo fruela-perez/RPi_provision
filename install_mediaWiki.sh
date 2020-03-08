@@ -17,7 +17,7 @@ if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
 	wget https://releases.wikimedia.org/mediawiki/1.34/mediawiki-$MEDIAWIKI_VERSION.tar.gz
 	tar -xvf mediawiki-$MEDIAWIKI_VERSION.tar.gz
 	rm mediawiki-$MEDIAWIKI_VERSION.tar.gz*
-	mv mediawiki-$MEDIAWIKI_VERSION $MEDIAWIKI_DESTINO 
+	sudo mv mediawiki-$MEDIAWIKI_VERSION $MEDIAWIKI_DESTINO 
 else
     echo Omitiendo la instalación de MediaWiki
 fi

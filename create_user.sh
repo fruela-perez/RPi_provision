@@ -9,6 +9,10 @@ if id "$1" >/dev/null 2>&1; then
 	echo "El usuario $1 ya existe."
 	exit 2
 else
+	if [ -z $NEW_USER ] ;then
+		source $(dirname $0)/settings.sh
+	fi
+
 	sudo useradd -m $1
 	echo -e "$2\n$2" | sudo passwd -q 2>&1 $NEW_USER 2>/dev/null
 

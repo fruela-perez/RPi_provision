@@ -5,6 +5,10 @@ echo "|      Basic cosillas     |"
 echo "+-------------------------+"
 echo
 
+if [ -z $GIT_USER ] ;then
+	source $(dirname $0)/settings.sh
+fi
+
 echo -n "¿Instalar paquetes sugeridos? [s/N] "
 read psugeridos
 
