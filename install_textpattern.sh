@@ -5,13 +5,20 @@ echo "|  Instalar  Textpattern  |"
 echo "+-------------------------+"
 echo
 
+SETTINGS=$(readlink -f $(dirname $0))/settings.sh
+DATABASE=$(readlink -f $(dirname $0))/create_textpattern_database.sql
+
+echo $DATABASE
+
+exit
+
 echo -n "¿Instalar Textpattern? [s/N] "
 read respuesta
 
 if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
 
 	if [ -z $TEXTPATTERN_VERSION ] ;then
-		source $(dirname $0)/settings.sh
+		source $SETTINGS
 	fi
 	
 	cd
@@ -26,7 +33,7 @@ if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
 		unzip textpattern-$TEXTPATTERN_VERSION.zip
 		rm textpattern-$TEXTPATTERN_VERSION.zip
 
-		mysql -u root -p$MYSQL_ROOT_PWD < $(dirname $0)/create_textpattern_database.sql	
+		mysql -u root -p$MYSQL_ROOT_PWD < $DATABASE
 	else
 		echo "Ha fallado la comprobación de la integridad de textpattern-$TEXTPATTERN_VERSION.zip :("
 		echo "Abortando."
