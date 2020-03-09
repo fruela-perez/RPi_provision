@@ -9,7 +9,7 @@ read respuesta
 
 if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
 
-    #go get -u github.com/arduino/arduino-cli
+    go get -u github.com/arduino/arduino-cli
     sudo mv ~/go/bin/arduino-cli /bin
 else
     echo Omitiendo la instalación de arduino-cli

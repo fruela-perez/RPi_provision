@@ -14,7 +14,7 @@ else
 	fi
 
 	sudo useradd -m $1
-	echo -e "$2\n$2" | sudo passwd -q 2>&1 $NEW_USER 2>/dev/null
+	echo -e "$2\n$2" | sudo passwd -q 2>&1 $1 2>/dev/null
 
 	if [ "$3" = "sudoer" ] ;then
 		sudo usermod -a -G sudo $1
