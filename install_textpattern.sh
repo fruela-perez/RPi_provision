@@ -5,12 +5,9 @@ echo "|  Instalar  Textpattern  |"
 echo "+-------------------------+"
 echo
 
-SETTINGS=$(readlink -f $(dirname $0))/settings.sh
-DATABASE=$(readlink -f $(dirname $0))/create_textpattern_database.sql
-
-echo $DATABASE
-
-exit
+ABSPATH=$(readlink -f $(dirname $0))
+SETTINGS=$ABSPATH/settings.sh
+DATABASE=$ABSPATH/create_textpattern_database.sql
 
 echo -n "¿Instalar Textpattern? [s/N] "
 read respuesta
