@@ -9,7 +9,7 @@ read respuesta
 
 SETTINGS=$(readlink -f $(dirname $0))/settings.sh
 
-if [ -z $GIT_USER ] ;then
+if [ -z $GETH_VERSION ] ;then
 	source $SETTINGS
 fi
 
