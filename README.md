@@ -1,4 +1,4 @@
-# RPi Provision - versión 0.2
+# RPi Provision - versión 0.2.1
 
 Instalar *cosas* en una Raspberry Pi. 
 
@@ -7,16 +7,16 @@ Instalar *cosas* en una Raspberry Pi.
 ## Uso
 
 1. Tostar una [Raspbian Buster Lite](https://downloads.raspberrypi.org/raspbian_full_latest.torrent) con [BalenaEtcher](https://www.balena.io/etcher/) o similar. 
-2. Insertar la tarjeta en la Raspberry, arranca el sistema y ejecuta `sudo raspi-config`.
-   1. Cambia la contraseña del usuario pi.
-   2. Establece el nombre de la máquina.
-   3. Configura la red.
-   4. Selecciona las locales.
-   5. Establece la zona horaria.
+2. Insertar la tarjeta en la Raspberry, arrancar el sistema y ejecutar `sudo raspi-config`.
+   1. Cambiar la contraseña del usuario pi.
+   2. Establecer el nombre de la máquina.
+   3. Configurar la red.
+   4. Seleccionar las locales.
+   5. Establecer la zona horaria.
 3. Instalar git (no está incluido en la versión Lite): `sudo apt-get install -y git`.
 4. Clonar el repositorio: `git clone https://github.com/fruela-perez/RPi_provision.git`.
 5. Editar el archivo `settings.sh`, modificar usuarios, passwords y números de versión según proceda.
-6. Ejecutar el script `setup.sh` e ir seleccionando lo que se quiere instalar (**N.B.:** Si seleccionas los paquetes recomendados y sugeridos, te puede llevar media vida terminar la instalación). 
+6. Ejecutar el script `setup.sh` e ir seleccionando lo que se quiere instalar (**N.B.:** Si se seleccionan los paquetes recomendados y sugeridos, puede llevar media vida terminar la instalación). 
 
 ## Opciones disponibles
 
