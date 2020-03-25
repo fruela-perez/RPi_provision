@@ -8,10 +8,7 @@ echo -n "Instalar Go? [s/N] "
 read respuesta
 
 SETTINGS=$(readlink -f $(dirname $0))/settings.sh
-
-if [ -z GO_VERSION ] ;then
-	source $SETTINGS
-fi
+source $SETTINGS
 
 if [ "$respuesta" != "${respuesta#[Ss]}" ] ;then
 	cd 
